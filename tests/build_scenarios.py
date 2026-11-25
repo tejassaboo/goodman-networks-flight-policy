@@ -649,11 +649,12 @@ scenario(
         offer("southwest-economy", "southwest", "ECONOMY", 24_900),
     ]),
     expected("REFUSE", [], ["NONE"], ["OUTSIDE_POLICY_SCOPE", "PERSONAL_TRAVEL_NOT_COVERED"], ["NONE"],
-             ["INTRODUCTION", "POLICY_ENFORCEMENT", "SCOPE", "TRAVEL_AUTHORIZATIONS"]),
+             ["GENERAL_PHILOSOPHY", "INTRODUCTION", "POLICY_ENFORCEMENT", "SCOPE", "TRAVEL_AUTHORIZATIONS"]),
     [BUSINESS_ONLY, REIMBURSE, SCOPE_LINE],
     "Business travel is authorized only when clearly consistent with the company's business interest (line 11; line "
     "359), and the company reimburses expenses of authorized company business (line 325). A family holiday is not: no "
-    "ticket is bought.")
+    "ticket is bought. General Philosophy (line 19) states the same ground (travel on company business, no financial "
+    "gain from it), so that section is accepted too.")
 
 scenario(
     "umber-wren", "refusal", ["multi_traveller", "outside_air_section"],

@@ -81,6 +81,7 @@
       "NONE"
     ],
     "clauses": [
+      "GENERAL_PHILOSOPHY",
       "INTRODUCTION",
       "POLICY_ENFORCEMENT",
       "SCOPE",
@@ -118,5 +119,5 @@
     }
   ],
   "distractors": [],
-  "design_notes": "Business travel is authorized only when clearly consistent with the company's business interest (line 11; line 359), and the company reimburses expenses of authorized company business (line 325). A family holiday is not: no ticket is bought."
+  "design_notes": "Business travel is authorized only when clearly consistent with the company's business interest (line 11; line 359), and the company reimburses expenses of authorized company business (line 325). A family holiday is not: no ticket is bought. General Philosophy (line 19) states the same ground (travel on company business, no financial gain from it), so that section is accepted too."
 }

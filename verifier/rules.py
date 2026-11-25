@@ -177,9 +177,11 @@ def solve(trip, offers, hidden):
             raise ValueError("a personal trip with sign-offs on file is not modelled")
         return answer(Decision.REFUSE, [], [ReasonCode.PERSONAL_TRAVEL_NOT_COVERED, ReasonCode.OUTSIDE_POLICY_SCOPE],
                       [Approver.NONE],
-                      [Clause.INTRODUCTION, Clause.POLICY_ENFORCEMENT, Clause.SCOPE, Clause.TRAVEL_AUTHORIZATIONS],
+                      [Clause.GENERAL_PHILOSOPHY, Clause.INTRODUCTION, Clause.POLICY_ENFORCEMENT, Clause.SCOPE,
+                       Clause.TRAVEL_AUTHORIZATIONS],
                       "Line 11: business travel is authorized only in circumstances clearly consistent with the "
-                      "company's business interest; line 325: the company reimburses expenses while traveling on "
+                      "company's business interest; line 19: travel on company business, with no financial gain "
+                      "from it; line 325: the company reimburses expenses while traveling on "
                       "authorized company business (and line 359). A holiday is neither: no ticket is bought.")
     if trip.passenger != Passenger.EMPLOYEE:
         if trip.sign_offs or not trip.accompanies:
