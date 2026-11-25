@@ -39,3 +39,13 @@ Checks at the fix commit: `uv run pytest -q` (204 passed), `uv run ruff check .`
 
 - `thistle-bay` (grader fix; the paid answer now scores valid offline, so a re-run is optional confirmation).
 - The three flags need no re-run for a fix; re-run only to measure slip variance.
+
+## Follow-up from the cross-plugin review (second commit)
+
+**Latent grader defect, birch-quarry (easy) and fable-wharf:** both long-flight business bookings accepted only
+`INTERNATIONAL_LONG_FLIGHT`. In the same wave, FedEx's easy cinder-heath failed on exactly this: right offer, and
+the model wrote "INTERNATIONAL_LONG_FLIGHT or LONG_FLIGHT_APPROVED ... Both seem plausible" and picked the second.
+The shared code list describes neither, and 24 other plugins accept both on this ground. `LONG_FLIGHT_APPROVED` is
+now accepted beside it (both `rules.py` copies, `tests/build_scenarios.py`, README, regenerated JSON). Both runs
+here passed, so no re-run is needed. The always-cheapest agent books coach: still 6/24. All six checks pass
+(pytest 204 passed).

@@ -379,7 +379,9 @@ def international_business(fit, lowest):
                  "hours; 'from the point of origin to the first destination point' may mean the first flight or each "
                  "long segment. Hold either fare; line 101 gives the policy to the Corporate Travel Department")],
                 SEGMENT_PHRASE)
-    return (Decision.BOOK, business, [ReasonCode.INTERNATIONAL_LONG_FLIGHT], [], list(CLASS),
+    # LONG_FLIGHT_APPROVED names the same ground (validation w2: FedEx cinder-heath gave it on the same rule).
+    return (Decision.BOOK, business, [ReasonCode.INTERNATIONAL_LONG_FLIGHT, ReasonCode.LONG_FLIGHT_APPROVED], [],
+            list(CLASS),
             [("line 647: an international nonstop whose airtime exceeds six hours: business is permitted, the cheapest "
              "business fare")], "")
 

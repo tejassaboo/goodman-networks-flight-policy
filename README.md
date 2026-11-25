@@ -63,11 +63,11 @@ a connection with a longer flight is unclear (one flag, `vale-crocus`). Domestic
 | Scenario | Category | Expected decision (offer; cabin) | Reason | Approver | Clause (must_keep lines) |
 |---|---|---|---|---|---|
 | `aspen-tarn` | easy | BOOK (morning-economy; ECONOMY) | LOWEST_FARE | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (635, 355, 383-407) |
-| `birch-quarry` | easy | BOOK (british-business; BUSINESS) | INTERNATIONAL_LONG_FLIGHT | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 355, 383-407) |
+| `birch-quarry` | easy | BOOK (british-business; BUSINESS) | INTERNATIONAL_LONG_FLIGHT or LONG_FLIGHT_APPROVED | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 355, 383-407) |
 | `cinder-moss` | easy | BOOK (atlanta-economy; ECONOMY) | LOWEST_FARE or TOO_MANY_STOPS | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (635, 697-705, 355, 383-407) |
 | `dove-heath` | easy | BOOK (latam-economy; ECONOMY) | LOWEST_FARE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (635, 647, 355, 383-407) |
 | `elder-pike` | easy | BOOK (alaska-economy; ECONOMY) | DOMESTIC_COACH_REQUIRED or LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (643, 647, 635, 355, 383-407) |
-| `fable-wharf` | boundary_twin | BOOK (delta-business; BUSINESS) | INTERNATIONAL_LONG_FLIGHT | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 643, 355, 383-407) |
+| `fable-wharf` | boundary_twin | BOOK (delta-business; BUSINESS) | INTERNATIONAL_LONG_FLIGHT or LONG_FLIGHT_APPROVED | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 643, 355, 383-407) |
 | `gorse-lantern` | boundary_twin | BOOK (aerlingus-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (647, 643, 635, 355, 383-407) |
 | `hazel-rook` | boundary_twin | BOOK (american-economy; ECONOMY) | ALTERNATE_ROUTE_WITHIN_MARGIN | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 355, 383-407) |
 | `iris-spindle` | boundary_twin | BOOK (denver-economy; ECONOMY) | ALTERNATE_ROUTE_TOO_EXPENSIVE or LOWEST_FARE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 697-705, 355, 383-407) |

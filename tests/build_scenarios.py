@@ -199,7 +199,8 @@ scenario(
         offer("british-economy", "british", "ECONOMY", 101_500),
         offer("british-business", "british", "BUSINESS", 489_000),
     ], background=0),
-    expected("BOOK", ["british-business"], ["BUSINESS"], ["INTERNATIONAL_LONG_FLIGHT"], on_file("EXECUTIVE_VP"), CLASS),
+    expected("BOOK", ["british-business"], ["BUSINESS"], ["INTERNATIONAL_LONG_FLIGHT", "LONG_FLIGHT_APPROVED"],
+             on_file("EXECUTIVE_VP"), CLASS),
     [BUSINESS, AUTHORIZE, TABLE],
     "Both nonstops are international with airtime over six hours (line 647): business is permitted; the cheapest "
     "business fare. The 6,200 dollars of travel expenses need EVP / President-COO approval (Table 2), on file; the "
@@ -301,7 +302,8 @@ scenario(
     DUB_REQUEST,
     trip(traveller_name="Siobhan Keane", traveller_title="Principal RF Consultant", **DUB_TRIP),
     search("BOS", "DUB", "2027-02-16", dub_flights(361), DUB_OFFERS, background=0),
-    expected("BOOK", ["delta-business"], ["BUSINESS"], ["INTERNATIONAL_LONG_FLIGHT"], on_file("EXECUTIVE_VP"), CLASS),
+    expected("BOOK", ["delta-business"], ["BUSINESS"], ["INTERNATIONAL_LONG_FLIGHT", "LONG_FLIGHT_APPROVED"],
+             on_file("EXECUTIVE_VP"), CLASS),
     [BUSINESS, COACH, AUTHORIZE, TABLE],
     "Both nonstops are scheduled at 361 minutes: international airtime that exceeds six hours (line 647), so business "
     "is permitted; the cheapest business fare. Background is off: a filler connection could fall on the other side.",
