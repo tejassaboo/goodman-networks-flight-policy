@@ -50,6 +50,12 @@ a connection with a longer flight is unclear (one flag, `vale-crocus`). Domestic
   `OUTSIDE_REQUESTED_TIME_WINDOW`, `TOO_MANY_STOPS`, `LATE_REQUEST_APPROVED`, `EXECUTIVE_UPGRADE_APPROVED`,
   `FIRST_CLASS_APPROVED`) and decoy codes from other handbooks' rules. Fares are in cents of US dollars.
 - **Success:** every field is one the answer key accepts. Score = fields right / 6.
+- **Reasons on a declined request.** The task instructions say that when the booking is not what the traveller
+  asked for, the reason code gives why the request is declined. Such a booking accepts only the codes that name the
+  handbook's ground, not `LOWEST_FARE`: business declined (`elder-pike`, `plover-dune`, `gorse-lantern`,
+  `lark-basin`) and the nonstop declined over line 707's margin (`iris-spindle`). `sedge-harbor` keeps `LOWEST_FARE`
+  beside `LOYALTY_PROGRAM_PREFERENCE`, because lines 717 and 733 decline the airline on the lowest-fare test itself
+  ("beyond the lowest available airfare").
 - **No hidden facts:** no `answer_key_inputs`. The trip record carries what a booking tool would not show by
   itself: the trip's estimated travel expenses (Table 2 sets the approval by dollar range), sign-offs on file,
   colleagues on the same flights, the group size, the requested departure time and notes.
@@ -60,18 +66,18 @@ a connection with a longer flight is unclear (one flag, `vale-crocus`). Domestic
 | `birch-quarry` | easy | BOOK (british-business; BUSINESS) | INTERNATIONAL_LONG_FLIGHT | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 355, 383-407) |
 | `cinder-moss` | easy | BOOK (atlanta-economy; ECONOMY) | LOWEST_FARE or TOO_MANY_STOPS | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (635, 697-705, 355, 383-407) |
 | `dove-heath` | easy | BOOK (latam-economy; ECONOMY) | LOWEST_FARE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (635, 647, 355, 383-407) |
-| `elder-pike` | easy | BOOK (alaska-economy; ECONOMY) | DOMESTIC_COACH_REQUIRED or LONG_FLIGHT_CONDITION_NOT_MET or LOWEST_FARE or UPGRADE_NOT_ELIGIBLE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (643, 647, 635, 355, 383-407) |
+| `elder-pike` | easy | BOOK (alaska-economy; ECONOMY) | DOMESTIC_COACH_REQUIRED or LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (643, 647, 635, 355, 383-407) |
 | `fable-wharf` | boundary_twin | BOOK (delta-business; BUSINESS) | INTERNATIONAL_LONG_FLIGHT | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 643, 355, 383-407) |
-| `gorse-lantern` | boundary_twin | BOOK (aerlingus-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or LOWEST_FARE or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (647, 643, 635, 355, 383-407) |
+| `gorse-lantern` | boundary_twin | BOOK (aerlingus-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (647, 643, 635, 355, 383-407) |
 | `hazel-rook` | boundary_twin | BOOK (american-economy; ECONOMY) | ALTERNATE_ROUTE_WITHIN_MARGIN | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 355, 383-407) |
-| `iris-spindle` | boundary_twin | BOOK (denver-economy; ECONOMY) | ALTERNATE_ROUTE_TOO_EXPENSIVE or LOWEST_FARE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 697-705, 355, 383-407) |
+| `iris-spindle` | boundary_twin | BOOK (denver-economy; ECONOMY) | ALTERNATE_ROUTE_TOO_EXPENSIVE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 697-705, 355, 383-407) |
 | `jade-copse` | boundary_twin | BOOK (united-economy; ECONOMY) | LOWEST_FARE or OUTSIDE_REQUESTED_TIME_WINDOW | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (697-705, 635, 355, 383-407) |
 | `kiln-sorrel` | boundary_twin | BOOK (mid-economy; ECONOMY) | LOWEST_FARE or OUTSIDE_REQUESTED_TIME_WINDOW | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (697-705, 635, 355, 383-407) |
-| `lark-basin` | multi_rule | BOOK (houston-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or LOWEST_FARE or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (643, 647, 635, 355, 383-407) |
+| `lark-basin` | multi_rule | BOOK (houston-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (643, 647, 635, 355, 383-407) |
 | `maple-cove` | multi_rule | BOOK (morning-business; BUSINESS) | EXECUTIVE_UPGRADE_APPROVED | NONE or CHIEF_EXECUTIVE or VICE_PRESIDENT | AIR_UPGRADES or EXECUTIVE_TRAVEL (1151, 689-691, 643, 355, 383-407) |
 | `nettle-brook` | multi_rule | BOOK (southwest-economy; ECONOMY) | LATE_REQUEST_APPROVED or LOWEST_FARE or OUTSIDE_REQUESTED_TIME_WINDOW | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or ADVANCE_PLANNING (683, 635, 697-705, 355, 383-407) |
 | `oriole-fen` | multi_rule | BOOK (japan-first; FIRST) | FIRST_CLASS_APPROVED | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or TRAVEL_AUTHORIZATIONS (651, 355, 383-407) |
-| `plover-dune` | hidden_clause | BOOK (losangeles-economy; ECONOMY) | DOMESTIC_COACH_REQUIRED or LONG_FLIGHT_CONDITION_NOT_MET or LOWEST_FARE or UPGRADE_NOT_ELIGIBLE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or DEFINITIONS (193-195, 643, 635, 355, 383-407) |
+| `plover-dune` | hidden_clause | BOOK (losangeles-economy; ECONOMY) | DOMESTIC_COACH_REQUIRED or LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or DEFINITIONS (193-195, 643, 635, 355, 383-407) |
 | `quince-ridge` | hidden_clause | BOOK (american-economy; ECONOMY) | LOWEST_FARE | NONE or DIRECTOR | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or TRAVEL_AUTHORIZATIONS (355, 383-407, 635) |
 | `rowan-glade` | distractor | BOOK (southwest-economy; ECONOMY) | LOWEST_FARE | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or ADVANCE_PLANNING (683, 635, 355, 383-407) |
 | `sedge-harbor` | distractor | BOOK (airfrance-economy; ECONOMY) | LOWEST_FARE or LOYALTY_PROGRAM_PREFERENCE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or AIR_UPGRADES or FREQUENT_FLYER (717, 733, 635, 355, 383-407) |
@@ -110,7 +116,8 @@ BOOK whose sign-offs are on file accepts those roles and `NONE`; an unused sign-
 329 (`EXECUTIVE_VP`, `CHIEF_FINANCIAL_OFFICER`, `CHIEF_EXECUTIVE`) and the trip's signer; refusals
 accept `NONE`. Table 2's CEO notification (over $1,200, first class) is not an approval, and is never accepted as
 the approver. Degenerate agents (`tests/test_verifier.py`): always holding the right offer as unclear passes 2
-cases; always booking the cheapest seat with `LOWEST_FARE` and `NONE` passes 10 (the plain cheapest-economy cases).
+cases; always booking the cheapest seat with `LOWEST_FARE` and `NONE` passes 5 (the plain cheapest-economy cases and
+`sedge-harbor`).
 
 ## Tools
 

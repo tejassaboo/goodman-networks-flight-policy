@@ -46,7 +46,7 @@ ID_CATEGORY_ENUMS = [contract.Passenger, contract.Purpose, contract.SignOffSubje
 # How many scenarios a degenerate agent may pass: one that always holds the right offer for approval, and
 # one that always books the cheapest seat (with the right section and approver NONE).
 MAX_PASS_ALWAYS_FLAG = 2
-MAX_PASS_ALWAYS_LOWEST = 10  # the plain cheapest-fare cases; SYNC_NOTES 4' accepts NONE on bookings
+MAX_PASS_ALWAYS_LOWEST = 5  # the plain cheapest-fare cases and sedge-harbor; SYNC_NOTES 4' accepts NONE on bookings
 
 # Hand-built duration cases beyond the automatic both-sides tests: (rule, outbound scheduled minutes per
 # flight, layovers, expected True / False / None for unclear).

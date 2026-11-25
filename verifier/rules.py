@@ -280,6 +280,8 @@ def economy(trip, seated, fit, lowest):
     if trip.loyalty_airline:
         if all(offer.carrier == trip.loyalty_airline for offer in lowest):
             raise ValueError("a loyalty wish that the lowest fare already meets is not modelled")
+        # Lines 717 and 733 decline the airline on the lowest-fare test itself ("beyond the lowest available
+        # airfare"), so LOWEST_FARE names why the request is declined, beside the loyalty code.
         reasons.append(ReasonCode.LOYALTY_PROGRAM_PREFERENCE)
         clauses += [Clause.FREQUENT_FLYER, Clause.AIR_UPGRADES]
         notes.append("lines 717 and 733: a frequent flyer programme may not add cost beyond the lowest airfare; "
@@ -312,7 +314,8 @@ def nonstop(fit, lowest):
                  "the nonstop. Hold either offer; line 101 gives the policy to the Corporate Travel Department")],
                 EXTENSION_PHRASE)
     if added > EXTENSION_MINUTES:
-        return (Decision.BOOK, lowest, [ReasonCode.ALTERNATE_ROUTE_TOO_EXPENSIVE, ReasonCode.LOWEST_FARE], [], list(LOW),
+        # The reason names why the nonstop is declined: line 707's margin is not met. LOWEST_FARE is not accepted.
+        return (Decision.BOOK, lowest, [ReasonCode.ALTERNATE_ROUTE_TOO_EXPENSIVE], [], list(LOW),
                 [(f"line 707: the nonstop costs {extra // 100} dollars more, not less than 100: the lowest logical "
                  "airfare, the connection")], "")
     raise ValueError("a dear nonstop beside a connection adding two hours or less is not modelled")
@@ -343,8 +346,9 @@ def domestic_business(trip, fit, lowest):
     if trip.origin.code in NAMED_STATES or trip.destination.code in NAMED_STATES:
         clauses.append(Clause.DEFINITIONS)
         notes.append("lines 193-195: domestic travel includes Alaska and Hawaii")
+    # The reason names why business is declined (line 643, and line 647's international condition), not LOWEST_FARE.
     return (Decision.BOOK, lowest, [ReasonCode.DOMESTIC_COACH_REQUIRED, ReasonCode.UPGRADE_NOT_ELIGIBLE,
-                                    ReasonCode.LOWEST_FARE, ReasonCode.LONG_FLIGHT_CONDITION_NOT_MET], [], clauses, notes, "")
+                                    ReasonCode.LONG_FLIGHT_CONDITION_NOT_MET], [], clauses, notes, "")
 
 
 def verdict_of(fit):
@@ -359,8 +363,9 @@ def international_business(fit, lowest):
     verdict = verdict_of(fit)
     business = cheapest([offer for offer in fit if offer.cabin == Cabin.BUSINESS])
     if verdict is False:
-        return (Decision.BOOK, lowest, [ReasonCode.LONG_FLIGHT_CONDITION_NOT_MET, ReasonCode.UPGRADE_NOT_ELIGIBLE,
-                                        ReasonCode.LOWEST_FARE], [], list(LOW),
+        # The reason names why business is declined (the six-hour condition), so LOWEST_FARE is not accepted.
+        return (Decision.BOOK, lowest, [ReasonCode.LONG_FLIGHT_CONDITION_NOT_MET, ReasonCode.UPGRADE_NOT_ELIGIBLE],
+                [], list(LOW),
                 [("line 643: every flight is six hours or less, so coach is required (flights are not added together); "
                  "the lowest logical airfare")], "")
     if not business:

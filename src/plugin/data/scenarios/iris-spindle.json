@@ -107,8 +107,7 @@
       "ECONOMY"
     ],
     "reason_codes": [
-      "ALTERNATE_ROUTE_TOO_EXPENSIVE",
-      "LOWEST_FARE"
+      "ALTERNATE_ROUTE_TOO_EXPENSIVE"
     ],
     "approvers": [
       "NONE",

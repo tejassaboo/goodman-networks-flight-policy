@@ -97,3 +97,27 @@ packed (169874 bytes)
 $ python ../_template/tools/stock_verify.py .
 24 scenarios, 0 failures (every scenario right=True score=1.00 identical=True wrong-decision-rejected=True)
 ```
+
+## Reason codes on declined requests (lead's decision, `_template/APPROVER_REVIEW.md` section 4)
+
+The book task's instructions now end with: "When you book something other than what the traveller asked for, the
+reason code gives why their request is declined." Every BOOK that declines what the traveller asked for was re-read:
+
+- `elder-pike`, `plover-dune` (business asked on a domestic flight): `LOWEST_FARE` removed. Accept
+  `DOMESTIC_COACH_REQUIRED`, `UPGRADE_NOT_ELIGIBLE`, `LONG_FLIGHT_CONDITION_NOT_MET` (line 643; line 647's
+  international long-flight condition).
+- `gorse-lantern` (360-minute nonstops), `lark-basin` (connections, no segment over six hours): `LOWEST_FARE`
+  removed. Accept `LONG_FLIGHT_CONDITION_NOT_MET`, `UPGRADE_NOT_ELIGIBLE` (lines 643-647).
+- `iris-spindle` (nonstop asked, exactly $100 dearer): `LOWEST_FARE` removed. Accepts `ALTERNATE_ROUTE_TOO_EXPENSIVE`:
+  the ground is line 707's own margin ("less than $100 per direction"), not the bare lowest-fare rule.
+- `sedge-harbor` (American asked, Air France $55 cheaper): unchanged. Lines 717 and 733 decline the airline because it
+  adds cost "beyond the lowest available airfare", so the ground is the lowest-fare rule and `LOWEST_FARE` stays beside
+  `LOYALTY_PROGRAM_PREFERENCE` (same call as Standex kiln-meadow).
+- Not declines, unchanged: `jade-copse`, `kiln-sorrel`, `nettle-brook` (the keyed flight is inside the requested
+  two-hour window), `hazel-rook` (nonstop granted), `maple-cove`, `oriole-fen` (upgrade and first class granted),
+  `dove-heath` (economy is what was asked), `cinder-moss` and the other cases that ask for nothing special.
+
+Always-cheapest baseline (`MAX_PASS_ALWAYS_LOWEST`): 10 -> 5 (aspen-tarn, dove-heath, quince-ridge, rowan-glade,
+sedge-harbor). Rules changed in both `rules.py` copies (still byte-identical); scenario JSON regenerated.
+Acceptance: pytest 204 passed, ruff clean, `uv lock --check` ok, `check_shared.py` ok, `stock_verify.py` 24 scenarios
+0 failures, stock `nanoagent plugin inspect .` exit 0.

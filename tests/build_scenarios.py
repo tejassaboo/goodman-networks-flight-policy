@@ -147,7 +147,7 @@ def scenario(id, category, overlays, request, trip_, search_spec, exp, must_keep
 
 LOW = ["AIR_REQUIREMENTS", "AIR_TRAVEL", "LOWEST_LOGICAL_AIRFARE"]
 CLASS = ["AIR_REQUIREMENTS", "AIR_TRAVEL"]
-NOT_LONG = ["LONG_FLIGHT_CONDITION_NOT_MET", "LOWEST_FARE", "UPGRADE_NOT_ELIGIBLE"]
+NOT_LONG = ["LONG_FLIGHT_CONDITION_NOT_MET", "UPGRADE_NOT_ELIGIBLE"]
 DOMESTIC_COACH = ["DOMESTIC_COACH_REQUIRED", *NOT_LONG]
 UNCLEAR = ["NOT_NAMED", "TRAVEL_DEPARTMENT", "EXECUTIVE_VP", "CHIEF_FINANCIAL_OFFICER", "CHIEF_EXECUTIVE"]
 
@@ -356,7 +356,7 @@ scenario(
     SEA_REQUEST,
     trip(traveller_name="Devon Marsh", traveller_title="Market Engineering Manager", **SEA_TRIP),
     search("DFW", "SEA", "2027-03-03", SEA_FLIGHTS, sea_offers(41_200), background=0),
-    expected("BOOK", ["denver-economy"], ["ECONOMY"], ["ALTERNATE_ROUTE_TOO_EXPENSIVE", "LOWEST_FARE"],
+    expected("BOOK", ["denver-economy"], ["ECONOMY"], ["ALTERNATE_ROUTE_TOO_EXPENSIVE"],
              on_file("VICE_PRESIDENT"), LOW),
     [NONSTOP, LOWEST, CRITERIA, AUTHORIZE, TABLE],
     "The nonstop costs exactly 100 dollars more: not 'less than $100' (line 707), so the lowest logical airfare, the "
