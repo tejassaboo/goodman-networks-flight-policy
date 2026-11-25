@@ -314,8 +314,9 @@ def nonstop(fit, lowest):
                  "the nonstop. Hold either offer; line 101 gives the policy to the Corporate Travel Department")],
                 EXTENSION_PHRASE)
     if added > EXTENSION_MINUTES:
-        # The reason names why the nonstop is declined: line 707's margin is not met. LOWEST_FARE is not accepted.
-        return (Decision.BOOK, lowest, [ReasonCode.ALTERNATE_ROUTE_TOO_EXPENSIVE], [], list(LOW),
+        # The nonstop is declined because line 707's margin is not met; that margin is part of the lowest-fare rule,
+        # so LOWEST_FARE is accepted beside the specific code (lead's decision, the same in every plugin).
+        return (Decision.BOOK, lowest, [ReasonCode.ALTERNATE_ROUTE_TOO_EXPENSIVE, ReasonCode.LOWEST_FARE], [], list(LOW),
                 [(f"line 707: the nonstop costs {extra // 100} dollars more, not less than 100: the lowest logical "
                  "airfare, the connection")], "")
     raise ValueError("a dear nonstop beside a connection adding two hours or less is not modelled")

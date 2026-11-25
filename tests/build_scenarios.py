@@ -356,7 +356,7 @@ scenario(
     SEA_REQUEST,
     trip(traveller_name="Devon Marsh", traveller_title="Market Engineering Manager", **SEA_TRIP),
     search("DFW", "SEA", "2027-03-03", SEA_FLIGHTS, sea_offers(41_200), background=0),
-    expected("BOOK", ["denver-economy"], ["ECONOMY"], ["ALTERNATE_ROUTE_TOO_EXPENSIVE"],
+    expected("BOOK", ["denver-economy"], ["ECONOMY"], ["ALTERNATE_ROUTE_TOO_EXPENSIVE", "LOWEST_FARE"],
              on_file("VICE_PRESIDENT"), LOW),
     [NONSTOP, LOWEST, CRITERIA, AUTHORIZE, TABLE],
     "The nonstop costs exactly 100 dollars more: not 'less than $100' (line 707), so the lowest logical airfare, the "

@@ -121,3 +121,13 @@ Always-cheapest baseline (`MAX_PASS_ALWAYS_LOWEST`): 10 -> 5 (aspen-tarn, dove-h
 sedge-harbor). Rules changed in both `rules.py` copies (still byte-identical); scenario JSON regenerated.
 Acceptance: pytest 204 passed, ruff clean, `uv lock --check` ok, `check_shared.py` ok, `stock_verify.py` 24 scenarios
 0 failures, stock `nanoagent plugin inspect .` exit 0.
+
+## Follow-up: LOWEST_FARE back on nonstops declined by the connection test (lead's decision)
+
+For consistency across all plugins (Thornton and Hill-Rom already do this): when a nonstop is declined because the
+cheaper connection passes the handbook's specific savings or time-margin test, which is part of its
+lowest-logical-fare rule, the key accepts both `LOWEST_FARE` and the specific codes. `iris-spindle` (line 707, the nonstop is not less than $100 dearer) now accepts `ALTERNATE_ROUTE_TOO_EXPENSIVE`, `LOWEST_FARE`.
+
+Always-cheapest baseline (`MAX_PASS_ALWAYS_LOWEST`): 5 -> 6 (iris-spindle). Both `rules.py` copies changed identically, scenario JSON
+regenerated. Acceptance: pytest 204 passed, ruff clean, `uv lock --check` ok, `check_shared.py` ok, `stock_verify.py` 24
+scenarios 0 failures, stock `nanoagent plugin inspect .` exit 0.

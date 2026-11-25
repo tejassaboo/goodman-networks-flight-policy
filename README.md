@@ -53,7 +53,7 @@ a connection with a longer flight is unclear (one flag, `vale-crocus`). Domestic
 - **Reasons on a declined request.** The task instructions say that when the booking is not what the traveller
   asked for, the reason code gives why the request is declined. Such a booking accepts only the codes that name the
   handbook's ground, not `LOWEST_FARE`: business declined (`elder-pike`, `plover-dune`, `gorse-lantern`,
-  `lark-basin`) and the nonstop declined over line 707's margin (`iris-spindle`). `sedge-harbor` keeps `LOWEST_FARE`
+  `lark-basin`). A nonstop declined because the cheaper connection passes the handbook's specific savings or margin test, part of its lowest-logical-fare rule, accepts `LOWEST_FARE` beside the specific codes (lead's decision, the same in every plugin): `iris-spindle` (line 707's margin). `sedge-harbor` keeps `LOWEST_FARE`
   beside `LOYALTY_PROGRAM_PREFERENCE`, because lines 717 and 733 decline the airline on the lowest-fare test itself
   ("beyond the lowest available airfare").
 - **No hidden facts:** no `answer_key_inputs`. The trip record carries what a booking tool would not show by
@@ -70,7 +70,7 @@ a connection with a longer flight is unclear (one flag, `vale-crocus`). Domestic
 | `fable-wharf` | boundary_twin | BOOK (delta-business; BUSINESS) | INTERNATIONAL_LONG_FLIGHT | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 643, 355, 383-407) |
 | `gorse-lantern` | boundary_twin | BOOK (aerlingus-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (647, 643, 635, 355, 383-407) |
 | `hazel-rook` | boundary_twin | BOOK (american-economy; ECONOMY) | ALTERNATE_ROUTE_WITHIN_MARGIN | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 355, 383-407) |
-| `iris-spindle` | boundary_twin | BOOK (denver-economy; ECONOMY) | ALTERNATE_ROUTE_TOO_EXPENSIVE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 697-705, 355, 383-407) |
+| `iris-spindle` | boundary_twin | BOOK (denver-economy; ECONOMY) | ALTERNATE_ROUTE_TOO_EXPENSIVE or LOWEST_FARE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (707, 635, 697-705, 355, 383-407) |
 | `jade-copse` | boundary_twin | BOOK (united-economy; ECONOMY) | LOWEST_FARE or OUTSIDE_REQUESTED_TIME_WINDOW | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (697-705, 635, 355, 383-407) |
 | `kiln-sorrel` | boundary_twin | BOOK (mid-economy; ECONOMY) | LOWEST_FARE or OUTSIDE_REQUESTED_TIME_WINDOW | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (697-705, 635, 355, 383-407) |
 | `lark-basin` | multi_rule | BOOK (houston-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (643, 647, 635, 355, 383-407) |
@@ -116,8 +116,8 @@ BOOK whose sign-offs are on file accepts those roles and `NONE`; an unused sign-
 329 (`EXECUTIVE_VP`, `CHIEF_FINANCIAL_OFFICER`, `CHIEF_EXECUTIVE`) and the trip's signer; refusals
 accept `NONE`. Table 2's CEO notification (over $1,200, first class) is not an approval, and is never accepted as
 the approver. Degenerate agents (`tests/test_verifier.py`): always holding the right offer as unclear passes 2
-cases; always booking the cheapest seat with `LOWEST_FARE` and `NONE` passes 5 (the plain cheapest-economy cases and
-`sedge-harbor`).
+cases; always booking the cheapest seat with `LOWEST_FARE` and `NONE` passes 6 (the plain cheapest-economy cases,
+`iris-spindle` and `sedge-harbor`).
 
 ## Tools
 
