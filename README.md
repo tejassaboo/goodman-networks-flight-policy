@@ -1,5 +1,7 @@
 # Goodman Networks Flight Policy
 
+**Source of the handbook:** https://www.sec.gov/Archives/edgar/data/1335982/000119312513060213/d313958dex104.htm. The agent reads it verbatim (bundled at `src/plugin/data/policy.txt`); flights, fares and trips are synthetic.
+
 **No affiliation with Goodman Networks or Alcatel-Lucent.** The handbook is Goodman Networks' *Corporate Travel
 Policy*, filed publicly with the SEC as Schedule Q ("Service Provider's Travel and Living Expenses") of its 2013
 Master Services Agreement with Alcatel-Lucent (exhibit 10.4), bundled verbatim for research. It is a corporate
