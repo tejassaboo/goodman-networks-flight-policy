@@ -66,7 +66,7 @@
             "slot": "early-economy",
             "flight": "early",
             "cabin": "ECONOMY",
-            "fare_cents": 22900
+            "fare_cents": 26900
           },
           {
             "slot": "mid-economy",
@@ -152,5 +152,5 @@
     }
   ],
   "distractors": [],
-  "design_notes": "Requested 09:00. The 14:30 fare is cheaper but leaves 330 minutes later and the 06:45 fare 135 minutes earlier, outside 'no more than 2 hours before and 2 hours after' (line 705). United at 11:00 leaves exactly 120 minutes after, inside the window: the lowest logical airfare."
+  "design_notes": "Requested 09:00. The 14:30 fare is cheaper but leaves 330 minutes later, outside 'no more than 2 hours before and 2 hours after' (line 705). United at 11:00 leaves exactly 120 minutes after, inside the window: the lowest logical airfare. The 06:45 fare (135 minutes early, but landing 08:45) is dearer than the 08:15 one, so a reader who lets 'Departure/arrival' match either end gets the same answer."
 }

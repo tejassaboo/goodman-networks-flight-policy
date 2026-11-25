@@ -66,7 +66,7 @@
             "slot": "early-economy",
             "flight": "early",
             "cabin": "ECONOMY",
-            "fare_cents": 22900
+            "fare_cents": 26900
           },
           {
             "slot": "mid-economy",
@@ -152,5 +152,5 @@
     }
   ],
   "distractors": [],
-  "design_notes": "Requested 09:00. United now leaves at 11:05, 125 minutes after, outside the window (line 705), as are 06:45 and 14:30. The only fare inside it is 08:15: the lowest logical airfare."
+  "design_notes": "Requested 09:00. United now leaves at 11:05, 125 minutes after (and lands 13:05), outside the window (line 705), as is 14:30. The 08:15 is the cheapest fare inside it; the 06:45 (landing 08:45) is dearer, so either reading of 'Departure/arrival' gives 08:15: the lowest logical airfare."
 }

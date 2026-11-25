@@ -67,6 +67,9 @@ LOYALTY = keep(717, 717, None, "a frequent flyer programme may not add cost beyo
 PREFERRED = keep(733, 733, None, "no higher fare to use frequent flyer privileges")
 EXECUTIVE = keep(1151, 1151, None, "an executive's request to upgrade a travelling employee needs the CEO")
 NON_EMPLOYEE = keep(1203, 1203, None, "a non-employee travels at their own risk and expense")
+SCOPE_LINE = keep(89, 89, "This Goodman Networks Corporate Travel Policy covers all business travel activity",
+                  "the policy covers business travel")
+EXCEPTIONS = keep(329, 329, None, "exceptions are approved through the EVP organization and the CFO and/or CEO")
 TRAVEL_DEPT = keep(101, 101, "The Corporate Travel Department is responsible for establishment, maintenance, revision, "
                    "and publication of this policy", "nobody else is named to settle the policy's words")
 
@@ -146,7 +149,7 @@ LOW = ["AIR_REQUIREMENTS", "AIR_TRAVEL", "LOWEST_LOGICAL_AIRFARE"]
 CLASS = ["AIR_REQUIREMENTS", "AIR_TRAVEL"]
 NOT_LONG = ["LONG_FLIGHT_CONDITION_NOT_MET", "LOWEST_FARE", "UPGRADE_NOT_ELIGIBLE"]
 DOMESTIC_COACH = ["DOMESTIC_COACH_REQUIRED", *NOT_LONG]
-UNCLEAR = ["NOT_NAMED", "TRAVEL_DEPARTMENT"]
+UNCLEAR = ["NOT_NAMED", "TRAVEL_DEPARTMENT", "EXECUTIVE_VP", "CHIEF_FINANCIAL_OFFICER", "CHIEF_EXECUTIVE"]
 
 
 def on_file(*roles):
@@ -251,7 +254,7 @@ scenario(
 scenario(
     "elder-pike", "easy", [],
     "Miami to Seattle on January 20th for the DAS install kickoff. It's almost seven hours coast to coast, so can you "
-    "put me in business?",
+    "put me in business? If not, economy is fine; I have to be there.",
     trip(traveller_name="Renata Cole", traveller_title="Construction Manager", origin="MIA", destination="SEA",
          travel_date="2027-01-20", booking_date="2026-12-21", purpose="Distributed antenna system install kickoff",
          requested_cabin="BUSINESS", trip_estimate_cents=88_000,
@@ -289,8 +292,9 @@ DUB_TRIP = {"origin": "BOS", "destination": "DUB", "travel_date": "2027-02-16", 
             "purpose": "Radio access network audit for an Irish operator", "purpose_kind": "CUSTOMER_MEETING",
             "requested_cabin": "BUSINESS", "trip_estimate_cents": 390_000,
             "sign_offs": [sign("EXECUTIVE_VP", "Leonard Haynes")]}
-DUB_REQUEST = ("Boston to Dublin overnight on February 16th for the RAN audit. It's about a six-hour flight and I "
-               "have to present the morning I land. Business please.")
+DUB_REQUEST = ("Boston to Dublin overnight on February 16th for the RAN audit. It's a long overnight flight and I "
+               "present the afternoon I land. Business please; if that isn't allowed, economy is fine, I have to be "
+               "there.")
 
 scenario(
     "fable-wharf", "boundary_twin", ["dearer_option"],
@@ -370,7 +374,7 @@ def ord_flights(united_depart):
 
 
 ORD_OFFERS = [
-    offer("early-economy", "early", "ECONOMY", 22_900),
+    offer("early-economy", "early", "ECONOMY", 26_900),
     offer("mid-economy", "mid", "ECONOMY", 25_900),
     offer("united-economy", "united", "ECONOMY", 21_600),
     offer("afternoon-economy", "afternoon", "ECONOMY", 19_800),
@@ -390,9 +394,10 @@ scenario(
     expected("BOOK", ["united-economy"], ["ECONOMY"], ["LOWEST_FARE", "OUTSIDE_REQUESTED_TIME_WINDOW"],
              on_file("MANAGER"), LOW),
     [CRITERIA, LOWEST, AUTHORIZE, TABLE],
-    "Requested 09:00. The 14:30 fare is cheaper but leaves 330 minutes later and the 06:45 fare 135 minutes earlier, "
-    "outside 'no more than 2 hours before and 2 hours after' (line 705). United at 11:00 leaves exactly 120 minutes "
-    "after, inside the window: the lowest logical airfare.",
+    "Requested 09:00. The 14:30 fare is cheaper but leaves 330 minutes later, outside 'no more than 2 hours before and "
+    "2 hours after' (line 705). United at 11:00 leaves exactly 120 minutes after, inside the window: the lowest "
+    "logical airfare. The 06:45 fare (135 minutes early, but landing 08:45) is dearer than the 08:15 one, so a reader "
+    "who lets 'Departure/arrival' match either end gets the same answer.",
     twin_of="kiln-sorrel", twin_fact="the United flight leaves at 11:00 or 11:05")
 
 scenario(
@@ -403,16 +408,17 @@ scenario(
     expected("BOOK", ["mid-economy"], ["ECONOMY"], ["LOWEST_FARE", "OUTSIDE_REQUESTED_TIME_WINDOW"],
              on_file("MANAGER"), LOW),
     [CRITERIA, LOWEST, AUTHORIZE, TABLE],
-    "Requested 09:00. United now leaves at 11:05, 125 minutes after, outside the window (line 705), as are 06:45 and "
-    "14:30. The only fare inside it is 08:15: the lowest logical airfare.",
+    "Requested 09:00. United now leaves at 11:05, 125 minutes after (and lands 13:05), outside the window (line 705), "
+    "as is 14:30. The 08:15 is the cheapest fare inside it; the 06:45 (landing 08:45) is dearer, so either reading of "
+    "'Departure/arrival' gives 08:15: the lowest logical airfare.",
     twin_of="jade-copse", twin_fact="the United flight leaves at 11:05 or 11:00")
 
 # ===== multi-rule (4) =====
 
 scenario(
     "lark-basin", "multi_rule", ["multi_leg"],
-    "Dallas to Bogota on February 24th for the operator's site acceptance tests. With the connection it's well over "
-    "six hours of flying, so please book business.",
+    "Dallas to Bogota on February 24th for the operator's site acceptance tests. With the connection it's a long day "
+    "of flying, so please book business. If the policy doesn't allow it, economy is fine; I have to be there.",
     trip(traveller_name="Camila Ortega", traveller_title="Director, Latin America Programs", origin="DFW",
          destination="BOG", travel_date="2027-02-24", booking_date="2027-01-26",
          purpose="Site acceptance tests with a Colombian operator", requested_cabin="BUSINESS",
@@ -468,11 +474,11 @@ scenario(
 
 scenario(
     "nettle-brook", "multi_rule", ["date_arithmetic"],
-    "Sorry for the short notice: the customer moved the drive test to Monday the 15th, so I need Dallas to Denver that "
-    "morning. Karen already okayed the late request. Cheapest economy.",
+    "Sorry for the short notice: the customer moved the drive test to Monday afternoon, the 15th, so I'd like to leave "
+    "Dallas for Denver around 8 that morning. Karen already okayed the late request. Cheapest economy.",
     trip(traveller_name="Tyler Brandt", traveller_title="Drive Test Engineer", origin="DFW", destination="DEN",
          travel_date="2027-02-15", booking_date="2027-02-10", purpose="Drive test for a carrier's network launch",
-         trip_estimate_cents=44_000,
+         requested_departure="08:00", trip_estimate_cents=44_000,
          sign_offs=[sign("MANAGER", "Karen Ostrowski"), sign("MANAGER", "Karen Ostrowski", "LATE_REQUEST")]),
     search("DFW", "DEN", "2027-02-15", {
         "united": {"carrier": "UA", "depart": "07:20"},
@@ -481,13 +487,17 @@ scenario(
     }, [
         offer("united-economy", "united", "ECONOMY", 19_400),
         offer("southwest-economy", "southwest", "ECONOMY", 17_900),
-        offer("american-economy", "american", "ECONOMY", 21_300),
+        offer("american-economy", "american", "ECONOMY", 16_900),
     ]),
-    expected("BOOK", ["southwest-economy"], ["ECONOMY"], ["LATE_REQUEST_APPROVED", "LOWEST_FARE"], on_file("MANAGER"),
+    expected("BOOK", ["southwest-economy"], ["ECONOMY"],
+             ["LATE_REQUEST_APPROVED", "LOWEST_FARE", "OUTSIDE_REQUESTED_TIME_WINDOW"], on_file("MANAGER"),
              LOW + ["ADVANCE_PLANNING"]),
-    [ADVANCE, LOWEST, AUTHORIZE, TABLE],
+    [ADVANCE, LOWEST, CRITERIA, AUTHORIZE, TABLE],
     "Requested on February 10 for February 15: 5 days, under the seven of line 683. The approving manager made the "
-    "exception and approved the request, which is on file, so the ticket is bought at the lowest logical airfare.")
+    "exception and approved the request, which is on file, so the ticket is bought at the lowest logical airfare. The "
+    "traveller asks to leave around 08:00: the 12:10 fare is cheaper but leaves 250 minutes later, outside the "
+    "two-hour window (line 705); the 09:05 is the cheapest inside it. The drive test starts in the afternoon, so no "
+    "arrival deadline separates the morning flights.")
 
 scenario(
     "oriole-fen", "multi_rule", ["dearer_option"],
@@ -521,7 +531,8 @@ scenario(
 scenario(
     "plover-dune", "hidden_clause", ["multi_leg", "outside_air_section"],
     "Dallas to Honolulu on February 17th for the island network survey. It's an overseas flight over eight hours, and "
-    "Angela, my VP, approved business class. Business please.",
+    "Angela, my VP, approved business class. Business please; if that isn't allowed, economy is fine, I have to be "
+    "there.",
     trip(traveller_name="Kai Nakamura", traveller_title="Senior Network Planner", origin="DFW", destination="HNL",
          travel_date="2027-02-17", booking_date="2027-01-19", purpose="Island network survey for a wireless carrier",
          requested_cabin="BUSINESS", trip_estimate_cents=104_000,
@@ -599,7 +610,8 @@ scenario(
 scenario(
     "sedge-harbor", "distractor", ["upgrade_not_taken"],
     "Dallas to Paris on February 25th for the equipment vendor review. Economy is fine; I'll upgrade myself with my "
-    "AAdvantage miles. Please book American though, I need the flights for my status.",
+    "AAdvantage miles. Please book American though, I need the flights for my status. If American isn't possible, "
+    "book what the policy allows; I have to be at the review.",
     trip(traveller_name="Elena Varga", traveller_title="Supply Chain Manager", origin="DFW", destination="CDG",
          travel_date="2027-02-25", booking_date="2027-01-27", purpose="Equipment vendor quality review in Paris",
          purpose_kind="INTERNAL_MEETING", loyalty_airline="American Airlines", trip_estimate_cents=270_000,
@@ -637,8 +649,8 @@ scenario(
         offer("southwest-economy", "southwest", "ECONOMY", 24_900),
     ]),
     expected("REFUSE", [], ["NONE"], ["OUTSIDE_POLICY_SCOPE", "PERSONAL_TRAVEL_NOT_COVERED"], ["NONE"],
-             ["INTRODUCTION", "POLICY_ENFORCEMENT", "TRAVEL_AUTHORIZATIONS"]),
-    [BUSINESS_ONLY, REIMBURSE],
+             ["INTRODUCTION", "POLICY_ENFORCEMENT", "SCOPE", "TRAVEL_AUTHORIZATIONS"]),
+    [BUSINESS_ONLY, REIMBURSE, SCOPE_LINE],
     "Business travel is authorized only when clearly consistent with the company's business interest (line 11; line "
     "359), and the company reimburses expenses of authorized company business (line 325). A family holiday is not: no "
     "ticket is bought.")
@@ -659,7 +671,8 @@ scenario(
         offer("southwest-economy", "southwest", "ECONOMY", 18_600),
         offer("american-economy", "american", "ECONOMY", 21_200),
     ]),
-    expected("REFUSE", [], ["NONE"], ["COMPANION_NOT_COVERED", "OUTSIDE_POLICY_SCOPE"], ["NONE"],
+    expected("REFUSE", [], ["NONE"], ["COMPANION_NOT_COVERED", "OUTSIDE_POLICY_SCOPE", "PERSONAL_TRAVEL_NOT_COVERED"],
+             ["NONE"],
              ["NON_EMPLOYEE_TRAVEL"]),
     [NON_EMPLOYEE],
     "Any non-employee accompanying an employee on an approved business trip does so at their own risk and expense "
@@ -685,9 +698,9 @@ scenario(
         offer("chicago-business", "chicago", "BUSINESS", 476_000),
     ], background=0),
     expected("FLAG_FOR_APPROVAL", ["chicago-business", "chicago-economy"], ["BUSINESS", "ECONOMY"],
-             ["UNCLEAR_POLICY_TEXT"], UNCLEAR + ["EXECUTIVE_VP"], CLASS,
+             ["UNCLEAR_POLICY_TEXT"], UNCLEAR, CLASS,
              phrase="from the point of origin to the first destination point"),
-    [BUSINESS, COACH, TRAVEL_DEPT, AUTHORIZE, TABLE],
+    [BUSINESS, COACH, TRAVEL_DEPT, EXCEPTIONS, AUTHORIZE, TABLE],
     "Only connections: a short domestic hop (55 or 160 minutes) to Dallas or Chicago, then a transatlantic segment "
     "of 590 or 505 minutes. Line 647 allows business 'when the non-stop/direct airtime exceeds six (6) hours from the "
     "point of origin to the first destination point': from Austin to the first destination point is a short hop "
@@ -722,7 +735,7 @@ scenario(
     expected("FLAG_FOR_APPROVAL", ["american-economy", "denver-economy"], ["ECONOMY"], ["UNCLEAR_POLICY_TEXT"],
              UNCLEAR + ["VICE_PRESIDENT"], ["LOWEST_LOGICAL_AIRFARE"],
              phrase="i.e., the connecting flight would have added more than a 2-hour extension of travel time each way"),
-    [NONSTOP, CRITERIA, TRAVEL_DEPT, AUTHORIZE, TABLE],
+    [NONSTOP, CRITERIA, TRAVEL_DEPT, EXCEPTIONS, AUTHORIZE, TABLE],
     "The nonstop costs 45 dollars more than the Denver connection, less than $100 (line 707), but the connection takes "
     "335 minutes against 245, only 90 minutes longer. Line 707's parenthesis, '(i.e., the connecting flight would have "
     "added more than a 2-hour extension of travel time each way ...)', is either an example or a condition of the "

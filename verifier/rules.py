@@ -97,7 +97,10 @@ EXTENSION_PHRASE = "i.e., the connecting flight would have added more than a 2-h
 
 LOW = [Clause.AIR_TRAVEL, Clause.AIR_REQUIREMENTS, Clause.LOWEST_LOGICAL_AIRFARE]
 CLASS = [Clause.AIR_TRAVEL, Clause.AIR_REQUIREMENTS]
-UNCLEAR_ROLES = [Approver.NOT_NAMED, Approver.TRAVEL_DEPARTMENT]
+# A hold over unclear words: no role is named to settle the words (line 101 gives the policy to the Corporate Travel
+# Department), and line 329 sends exceptions through the EVP organization "in addition to the CFO and/or CEO".
+UNCLEAR_ROLES = [Approver.NOT_NAMED, Approver.TRAVEL_DEPARTMENT, Approver.EXECUTIVE_VP,
+                 Approver.CHIEF_FINANCIAL_OFFICER, Approver.CHIEF_EXECUTIVE]
 
 
 def over(rule, offer):
@@ -174,14 +177,16 @@ def solve(trip, offers, hidden):
             raise ValueError("a personal trip with sign-offs on file is not modelled")
         return answer(Decision.REFUSE, [], [ReasonCode.PERSONAL_TRAVEL_NOT_COVERED, ReasonCode.OUTSIDE_POLICY_SCOPE],
                       [Approver.NONE],
-                      [Clause.INTRODUCTION, Clause.POLICY_ENFORCEMENT, Clause.TRAVEL_AUTHORIZATIONS],
+                      [Clause.INTRODUCTION, Clause.POLICY_ENFORCEMENT, Clause.SCOPE, Clause.TRAVEL_AUTHORIZATIONS],
                       "Line 11: business travel is authorized only in circumstances clearly consistent with the "
                       "company's business interest; line 325: the company reimburses expenses while traveling on "
                       "authorized company business (and line 359). A holiday is neither: no ticket is bought.")
     if trip.passenger != Passenger.EMPLOYEE:
         if trip.sign_offs or not trip.accompanies:
             raise ValueError("a non-employee with sign-offs, or with nobody accompanied, is not modelled")
-        return answer(Decision.REFUSE, [], [ReasonCode.COMPANION_NOT_COVERED, ReasonCode.OUTSIDE_POLICY_SCOPE],
+        # PERSONAL_TRAVEL_NOT_COVERED too: the companion's trip is not company business for her.
+        return answer(Decision.REFUSE, [], [ReasonCode.COMPANION_NOT_COVERED, ReasonCode.OUTSIDE_POLICY_SCOPE,
+                                            ReasonCode.PERSONAL_TRAVEL_NOT_COVERED],
                       [Approver.NONE], [Clause.NON_EMPLOYEE_TRAVEL],
                       "Line 1203: any non-employee accompanying an employee on an approved business trip does so at "
                       "their own risk and expense. The company buys no ticket.")
@@ -226,8 +231,8 @@ def solve(trip, offers, hidden):
                       f"{' or '.join(role.value for role in needed)} approval, and only a {authorizer.value} signed: "
                       "hold the ticket the request would otherwise get.")
     if decision == Decision.FLAG_FOR_APPROVAL:
-        # A hold over unclear words: nobody is named to settle them (line 101 gives the policy to the Corporate
-        # Travel Department); the trip sign-off on file, which the held ticket relies on, is accepted too.
+        # A hold over unclear words: UNCLEAR_ROLES (lines 101 and 329); the trip sign-off on file, which the held
+        # ticket relies on, is accepted too.
         approvers = [*UNCLEAR_ROLES, authorizer]
     else:
         # SYNC_NOTES 4': a BOOK whose needed sign-offs are already on file accepts those roles and NONE (readers

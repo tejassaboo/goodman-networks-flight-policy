@@ -83,6 +83,7 @@
     "clauses": [
       "INTRODUCTION",
       "POLICY_ENFORCEMENT",
+      "SCOPE",
       "TRAVEL_AUTHORIZATIONS"
     ],
     "unclear_phrase": ""
@@ -105,6 +106,15 @@
       "sha256": "a2ad5cee71c73820a13e476a7ee57f61dd8750d6e4d1cbcc3963b8cdad068226",
       "quote": "The Company reimburses employees for all reasonable and necessary expenses while traveling on authorized company business",
       "why": "the company pays for authorized business travel"
+    },
+    {
+      "lines": [
+        89,
+        89
+      ],
+      "sha256": "678914c73865ef3ce66f1b640b4ab5d92ab44812eb64bf6194f0aa8b7aa27ba5",
+      "quote": "This Goodman Networks Corporate Travel Policy covers all business travel activity",
+      "why": "the policy covers business travel"
     }
   ],
   "distractors": [],

@@ -69,16 +69,16 @@ a connection with a longer flight is unclear (one flag, `vale-crocus`). Domestic
 | `kiln-sorrel` | boundary_twin | BOOK (mid-economy; ECONOMY) | LOWEST_FARE or OUTSIDE_REQUESTED_TIME_WINDOW | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (697-705, 635, 355, 383-407) |
 | `lark-basin` | multi_rule | BOOK (houston-economy; ECONOMY) | LONG_FLIGHT_CONDITION_NOT_MET or LOWEST_FARE or UPGRADE_NOT_ELIGIBLE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE (643, 647, 635, 355, 383-407) |
 | `maple-cove` | multi_rule | BOOK (morning-business; BUSINESS) | EXECUTIVE_UPGRADE_APPROVED | NONE or CHIEF_EXECUTIVE or VICE_PRESIDENT | AIR_UPGRADES or EXECUTIVE_TRAVEL (1151, 689-691, 643, 355, 383-407) |
-| `nettle-brook` | multi_rule | BOOK (southwest-economy; ECONOMY) | LATE_REQUEST_APPROVED or LOWEST_FARE | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or ADVANCE_PLANNING (683, 635, 355, 383-407) |
+| `nettle-brook` | multi_rule | BOOK (southwest-economy; ECONOMY) | LATE_REQUEST_APPROVED or LOWEST_FARE or OUTSIDE_REQUESTED_TIME_WINDOW | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or ADVANCE_PLANNING (683, 635, 697-705, 355, 383-407) |
 | `oriole-fen` | multi_rule | BOOK (japan-first; FIRST) | FIRST_CLASS_APPROVED | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or TRAVEL_AUTHORIZATIONS (651, 355, 383-407) |
 | `plover-dune` | hidden_clause | BOOK (losangeles-economy; ECONOMY) | DOMESTIC_COACH_REQUIRED or LONG_FLIGHT_CONDITION_NOT_MET or LOWEST_FARE or UPGRADE_NOT_ELIGIBLE | NONE or VICE_PRESIDENT | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or DEFINITIONS (193-195, 643, 635, 355, 383-407) |
 | `quince-ridge` | hidden_clause | BOOK (american-economy; ECONOMY) | LOWEST_FARE | NONE or DIRECTOR | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or TRAVEL_AUTHORIZATIONS (355, 383-407, 635) |
 | `rowan-glade` | distractor | BOOK (southwest-economy; ECONOMY) | LOWEST_FARE | NONE or MANAGER | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or ADVANCE_PLANNING (683, 635, 355, 383-407) |
 | `sedge-harbor` | distractor | BOOK (airfrance-economy; ECONOMY) | LOWEST_FARE or LOYALTY_PROGRAM_PREFERENCE | NONE or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL or LOWEST_LOGICAL_AIRFARE or AIR_UPGRADES or FREQUENT_FLYER (717, 733, 635, 355, 383-407) |
-| `thistle-bay` | refusal | REFUSE (none; NONE) | OUTSIDE_POLICY_SCOPE or PERSONAL_TRAVEL_NOT_COVERED | NONE | INTRODUCTION or POLICY_ENFORCEMENT or TRAVEL_AUTHORIZATIONS (11, 325) |
-| `umber-wren` | refusal | REFUSE (none; NONE) | COMPANION_NOT_COVERED or OUTSIDE_POLICY_SCOPE | NONE | NON_EMPLOYEE_TRAVEL (1203) |
-| `vale-crocus` | flag | FLAG_FOR_APPROVAL (chicago-business, chicago-economy; BUSINESS or ECONOMY) | UNCLEAR_POLICY_TEXT | NOT_NAMED or TRAVEL_DEPARTMENT or EXECUTIVE_VP | AIR_REQUIREMENTS or AIR_TRAVEL (647, 643, 101, 355, 383-407) |
-| `willow-shoal` | flag | FLAG_FOR_APPROVAL (american-economy, denver-economy; ECONOMY) | UNCLEAR_POLICY_TEXT | NOT_NAMED or TRAVEL_DEPARTMENT or VICE_PRESIDENT | LOWEST_LOGICAL_AIRFARE (707, 697-705, 101, 355, 383-407) |
+| `thistle-bay` | refusal | REFUSE (none; NONE) | OUTSIDE_POLICY_SCOPE or PERSONAL_TRAVEL_NOT_COVERED | NONE | INTRODUCTION or POLICY_ENFORCEMENT or SCOPE or TRAVEL_AUTHORIZATIONS (11, 325, 89) |
+| `umber-wren` | refusal | REFUSE (none; NONE) | COMPANION_NOT_COVERED or OUTSIDE_POLICY_SCOPE or PERSONAL_TRAVEL_NOT_COVERED | NONE | NON_EMPLOYEE_TRAVEL (1203) |
+| `vale-crocus` | flag | FLAG_FOR_APPROVAL (chicago-business, chicago-economy; BUSINESS or ECONOMY) | UNCLEAR_POLICY_TEXT | NOT_NAMED or TRAVEL_DEPARTMENT or EXECUTIVE_VP or CHIEF_FINANCIAL_OFFICER or CHIEF_EXECUTIVE | AIR_REQUIREMENTS or AIR_TRAVEL (647, 643, 101, 329, 355, 383-407) |
+| `willow-shoal` | flag | FLAG_FOR_APPROVAL (american-economy, denver-economy; ECONOMY) | UNCLEAR_POLICY_TEXT | NOT_NAMED or TRAVEL_DEPARTMENT or VICE_PRESIDENT or EXECUTIVE_VP or CHIEF_FINANCIAL_OFFICER or CHIEF_EXECUTIVE | LOWEST_LOGICAL_AIRFARE (707, 697-705, 101, 329, 355, 383-407) |
 | `yarrow-fern` | flag | FLAG_FOR_APPROVAL (american-economy; ECONOMY) | APPROVAL_REQUIRED | DIVISION_GENERAL_MANAGER or VICE_PRESIDENT | TRAVEL_AUTHORIZATIONS (355, 383-407) |
 
 Mix (EDGE_CASES.md 5.2, 24 row): 5 easy, 6 boundary twins, 4 multi-rule, 2 hidden clause, 2 distractor, 2 refusal,
@@ -106,10 +106,11 @@ Flags, each with clear twins on both sides:
 Approvers (template SYNC_NOTES 4'): every business trip needs its sign-off before booking (line 355, Table 2). A
 BOOK whose sign-offs are on file accepts those roles and `NONE`; an unused sign-off on file is accepted too
 (4(b)); the approval-required hold accepts only the awaited roles; the unclear holds accept `NOT_NAMED`,
-`TRAVEL_DEPARTMENT` (line 101: the Corporate Travel Department owns the policy) and the trip's signer; refusals
+`TRAVEL_DEPARTMENT` (line 101: the Corporate Travel Department owns the policy), the exception approvers of line
+329 (`EXECUTIVE_VP`, `CHIEF_FINANCIAL_OFFICER`, `CHIEF_EXECUTIVE`) and the trip's signer; refusals
 accept `NONE`. Table 2's CEO notification (over $1,200, first class) is not an approval, and is never accepted as
 the approver. Degenerate agents (`tests/test_verifier.py`): always holding the right offer as unclear passes 2
-cases; always booking the cheapest seat with `LOWEST_FARE` and `NONE` passes 11 (the plain cheapest-economy cases).
+cases; always booking the cheapest seat with `LOWEST_FARE` and `NONE` passes 10 (the plain cheapest-economy cases).
 
 ## Tools
 
@@ -136,7 +137,8 @@ cases; always booking the cheapest seat with `LOWEST_FARE` and `NONE` passes 11 
 - `verifier/`: byte-identical copies of the shared modules and `rules.py`, plus `booking.py` and `tools.py`.
 - `tests/`: the template's acceptance suite; `tests/plugin_spec.py` holds this policy's settings.
 - `tests/build_scenarios.py`: writes the scenario files (an authoring aid, not a test).
-- `BUILD_NOTES.md`: design decisions, the blind read and the acceptance outputs.
+- `tests/BUILD_NOTES.md`: design decisions, the blind read and the acceptance outputs.
+- `tests/AUDIT_NOTES.md`: the independent audit, its fixes and its acceptance outputs.
 
 ## Develop and run
 

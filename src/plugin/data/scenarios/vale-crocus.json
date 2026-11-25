@@ -130,7 +130,9 @@
     "approvers": [
       "NOT_NAMED",
       "TRAVEL_DEPARTMENT",
-      "EXECUTIVE_VP"
+      "EXECUTIVE_VP",
+      "CHIEF_FINANCIAL_OFFICER",
+      "CHIEF_EXECUTIVE"
     ],
     "clauses": [
       "AIR_REQUIREMENTS",
@@ -165,6 +167,15 @@
       "sha256": "659ecc32b4746ffc85f80db182927cd6a35fe64553bb17a3bb0db52866229e38",
       "quote": "The Corporate Travel Department is responsible for establishment, maintenance, revision, and publication of this policy",
       "why": "nobody else is named to settle the policy's words"
+    },
+    {
+      "lines": [
+        329,
+        329
+      ],
+      "sha256": "f216516ec46549a066da667776e98ce3a18122144a2086d313f16e75e02fa57f",
+      "quote": "Managers/Approvers will be expected to justify all exceptions and obtain approval through their respective EVP organization, in addition to the CFO and/or CEO.",
+      "why": "exceptions are approved through the EVP organization and the CFO and/or CEO"
     },
     {
       "lines": [

@@ -8,7 +8,7 @@
   "twin_fact": "",
   "flag_twins": [],
   "ambiguity_note": "none",
-  "request": "Sorry for the short notice: the customer moved the drive test to Monday the 15th, so I need Dallas to Denver that morning. Karen already okayed the late request. Cheapest economy.",
+  "request": "Sorry for the short notice: the customer moved the drive test to Monday afternoon, the 15th, so I'd like to leave Dallas for Denver around 8 that morning. Karen already okayed the late request. Cheapest economy.",
   "trip": {
     "traveller_name": "Tyler Brandt",
     "traveller_title": "Drive Test Engineer",
@@ -21,7 +21,7 @@
     "purpose": "Drive test for a carrier's network launch",
     "purpose_kind": "CUSTOMER_SITE_WORK",
     "requested_cabin": "ECONOMY",
-    "requested_departure": "",
+    "requested_departure": "08:00",
     "wants_nonstop": false,
     "loyalty_airline": "",
     "trip_estimate_cents": 44000,
@@ -81,7 +81,7 @@
             "slot": "american-economy",
             "flight": "american",
             "cabin": "ECONOMY",
-            "fare_cents": 21300
+            "fare_cents": 16900
           }
         ]
       }
@@ -97,7 +97,8 @@
     ],
     "reason_codes": [
       "LATE_REQUEST_APPROVED",
-      "LOWEST_FARE"
+      "LOWEST_FARE",
+      "OUTSIDE_REQUESTED_TIME_WINDOW"
     ],
     "approvers": [
       "NONE",
@@ -132,6 +133,15 @@
     },
     {
       "lines": [
+        697,
+        705
+      ],
+      "sha256": "2054a5fbf57887c94b906c55efd2d02bcafd4ba724a9d6d635b3dbd2f172d500",
+      "quote": "Travelers are required to book the lowest logical airfare that is determined using the following search criteria: • Routing requires no more than one additional interim stop each way. • Time Window: Departure/arrival must be no more than 2 hours before and 2 hours after the requested time. One stop and single connection flights are treated the same as non-stops for itinerary purposes, fare calculations, and lowest fare identification.",
+      "why": "the lowest logical airfare: at most one interim stop, within two hours of the requested time"
+    },
+    {
+      "lines": [
         355,
         355
       ],
@@ -150,5 +160,5 @@
     }
   ],
   "distractors": [],
-  "design_notes": "Requested on February 10 for February 15: 5 days, under the seven of line 683. The approving manager made the exception and approved the request, which is on file, so the ticket is bought at the lowest logical airfare."
+  "design_notes": "Requested on February 10 for February 15: 5 days, under the seven of line 683. The approving manager made the exception and approved the request, which is on file, so the ticket is bought at the lowest logical airfare. The traveller asks to leave around 08:00: the 12:10 fare is cheaper but leaves 250 minutes later, outside the two-hour window (line 705); the 09:05 is the cheapest inside it. The drive test starts in the afternoon, so no arrival deadline separates the morning flights."
 }
