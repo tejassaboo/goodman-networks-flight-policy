@@ -1,0 +1,16 @@
+{
+  "id": "goodman-networks-flight-policy",
+  "name": "Goodman Networks Flight Policy",
+  "slug": "goodman-networks",
+  "title": "Goodman Networks Corporate Travel Policy (Schedule Q, Alcatel-Lucent Master Services Agreement, 2013)",
+  "frozen_file": "goodman-networks_policy.txt",
+  "sha256": "15131adcc781ab769f1fc284198476f43aeba72920c8868fb4965f945534fe91",
+  "raw_pdf_sha256": "d398eb1ea858152050d520849900119d39db349ed0a30c140bd6797c72e51592",
+  "words": 7392,
+  "lines": 1237,
+  "source": "https://www.sec.gov/Archives/edgar/data/1335982/000119312513060213/d313958dex104.htm",
+  "frozen_on": "2026-11-24",
+  "scenario_count": 24,
+  "currency": "USD",
+  "background_offers": 0
+}

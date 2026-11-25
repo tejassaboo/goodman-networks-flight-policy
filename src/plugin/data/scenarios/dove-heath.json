@@ -1,0 +1,155 @@
+{
+  "id": "dove-heath",
+  "category": "easy",
+  "overlays": [
+    "upgrade_not_taken"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "Dallas to Sao Paulo on February 9th for the fiber backhaul workshop. Economy is fine for me, whatever is cheapest.",
+  "trip": {
+    "traveller_name": "Lucas Pereira",
+    "traveller_title": "Transport Network Manager",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "GRU",
+    "travel_date": "2027-02-09",
+    "booking_date": "2027-01-08",
+    "purpose": "Fiber backhaul workshop with a Brazilian operator",
+    "purpose_kind": "CUSTOMER_MEETING",
+    "requested_cabin": "ECONOMY",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 290000,
+    "sign_offs": [
+      {
+        "role": "EXECUTIVE_VP",
+        "name": "Leonard Haynes",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "GRU",
+        "date": "2027-02-09",
+        "return_date": "",
+        "background": 3,
+        "flights": {
+          "american": {
+            "carrier": "AA",
+            "depart": "20:40",
+            "minutes": [
+              590
+            ]
+          },
+          "latam": {
+            "carrier": "LA",
+            "depart": "21:55",
+            "minutes": [
+              595
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 121000
+          },
+          {
+            "slot": "american-business",
+            "flight": "american",
+            "cabin": "BUSINESS",
+            "fare_cents": 610000
+          },
+          {
+            "slot": "latam-economy",
+            "flight": "latam",
+            "cabin": "ECONOMY",
+            "fare_cents": 116500
+          },
+          {
+            "slot": "latam-business",
+            "flight": "latam",
+            "cabin": "BUSINESS",
+            "fare_cents": 585000
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "BOOK",
+    "offer_slots": [
+      "latam-economy"
+    ],
+    "cabins": [
+      "ECONOMY"
+    ],
+    "reason_codes": [
+      "LOWEST_FARE"
+    ],
+    "approvers": [
+      "NONE",
+      "EXECUTIVE_VP"
+    ],
+    "clauses": [
+      "AIR_REQUIREMENTS",
+      "AIR_TRAVEL",
+      "LOWEST_LOGICAL_AIRFARE"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        635,
+        635
+      ],
+      "sha256": "67a4b7d3d5973458c94dfc26b8b91aa64f2282ea27d404d664a94ffb09a962a0",
+      "quote": "Within travel policy, the lowest logical airfare is always required.",
+      "why": "the default: the lowest logical airfare"
+    },
+    {
+      "lines": [
+        647,
+        647
+      ],
+      "sha256": "4d2baefcf9e2c12d3135f8328e0a4f9864834358e3448066f3d3b6b83d31d739",
+      "quote": "Travelers are permitted business class only on international flight segments when the non-stop/direct airtime exceeds six (6) hours from the point of origin to the first destination point.",
+      "why": "business only on an international segment over six hours"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Business would be permitted on these nonstops over six hours (line 647), but permitted is not required: the traveller asks for economy, so the lowest logical airfare (line 635)."
+}

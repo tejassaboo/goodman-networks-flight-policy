@@ -1,0 +1,178 @@
+{
+  "id": "maple-cove",
+  "category": "multi_rule",
+  "overlays": [
+    "multi_traveller",
+    "outside_air_section",
+    "dearer_option"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "I'm flying Dallas to Los Angeles on January 28th with Dana Whitfield, our EVP, for the carrier's executive briefing. Dana wants me next to her in business on her 8 a.m. flight so we can rehearse, and the CEO signed off on the company paying for it. Can you book that?",
+  "trip": {
+    "traveller_name": "Jordan Pike",
+    "traveller_title": "Solutions Architect",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "LAX",
+    "travel_date": "2027-01-28",
+    "booking_date": "2026-12-29",
+    "purpose": "Executive briefing for a wireless carrier",
+    "purpose_kind": "CUSTOMER_MEETING",
+    "requested_cabin": "BUSINESS",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 105000,
+    "sign_offs": [
+      {
+        "role": "VICE_PRESIDENT",
+        "name": "Angela Ruiz",
+        "subject": "TRIP"
+      },
+      {
+        "role": "CHIEF_EXECUTIVE",
+        "name": "Ronald Garza",
+        "subject": "CABIN_UPGRADE"
+      }
+    ],
+    "travelling_with": [
+      {
+        "name": "Dana Whitfield",
+        "title": "Executive Vice President, Engineering Services",
+        "flight_number": "AA 2007",
+        "date": "2027-01-28"
+      }
+    ],
+    "group_size": 2,
+    "notes": [
+      "Dana Whitfield asked that the company pay for the traveller's business seat beside her on her flight, so they can prepare the briefing together."
+    ]
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "LAX",
+        "date": "2027-01-28",
+        "return_date": "",
+        "background": 3,
+        "flights": {
+          "morning": {
+            "carrier": "AA",
+            "depart": "08:00"
+          },
+          "noon": {
+            "carrier": "AA",
+            "depart": "12:30"
+          },
+          "united": {
+            "carrier": "UA",
+            "depart": "10:10"
+          }
+        },
+        "offers": [
+          {
+            "slot": "morning-economy",
+            "flight": "morning",
+            "cabin": "ECONOMY",
+            "fare_cents": 28900
+          },
+          {
+            "slot": "morning-business",
+            "flight": "morning",
+            "cabin": "BUSINESS",
+            "fare_cents": 79000
+          },
+          {
+            "slot": "noon-economy",
+            "flight": "noon",
+            "cabin": "ECONOMY",
+            "fare_cents": 26400
+          },
+          {
+            "slot": "united-economy",
+            "flight": "united",
+            "cabin": "ECONOMY",
+            "fare_cents": 25800
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "BOOK",
+    "offer_slots": [
+      "morning-business"
+    ],
+    "cabins": [
+      "BUSINESS"
+    ],
+    "reason_codes": [
+      "EXECUTIVE_UPGRADE_APPROVED"
+    ],
+    "approvers": [
+      "NONE",
+      "CHIEF_EXECUTIVE",
+      "VICE_PRESIDENT"
+    ],
+    "clauses": [
+      "AIR_UPGRADES",
+      "EXECUTIVE_TRAVEL"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        1151,
+        1151
+      ],
+      "sha256": "7a0eeadea54d774faefd758fe2665a28185928f95fa7eda58c590e30c0ee2d64",
+      "quote": "If Executive Management travels with one or more employees and requests the employee(s) be upgraded at company expense, it must be approved by the CEO.",
+      "why": "an executive's request to upgrade a travelling employee needs the CEO"
+    },
+    {
+      "lines": [
+        689,
+        691
+      ],
+      "sha256": "001c8e9370b6cc7b02228afaa94e4f0c9c594aadde791076de80ebc104bc4640",
+      "quote": "Upgrades are allowed at the traveler's personal expense and may not be submitted for reimbursement. If upgrades are available at no cost to Goodman Networks (i.e. frequent flyer incentives offered by the airlines, etc.), they are allowed. See Section 7.5 Airline Frequent Flyer Programs for further detail. Please refer to Section 11.1 Executive Management Travel with Other Employees regarding upgrades while traveling with Executive Management.",
+      "why": "upgrades at the traveller's expense or free; executive travel is in 11.1"
+    },
+    {
+      "lines": [
+        643,
+        643
+      ],
+      "sha256": "74d050b02fe8047479db6bcbff2ed35f56216eb2a1cc8986bfff0d56ca6db262",
+      "quote": "Coach class or lower special fares are required for all domestic travel and international flight segments of six (6) hours or less.",
+      "why": "coach for domestic travel and segments of six hours or less"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Domestic travel is coach (line 643), but line 1151, to which the upgrade rule points (line 691), lets Executive Management travelling with an employee ask for the employee's upgrade at company expense with the CEO's approval, which is on file: business on the EVP's 08:00 flight. The trip itself is a Vice President's sign-off (1,050 dollars)."
+}

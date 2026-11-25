@@ -1,0 +1,190 @@
+{
+  "id": "vale-crocus",
+  "category": "flag",
+  "overlays": [
+    "multi_leg",
+    "unclear_phrase"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [
+    "birch-quarry",
+    "lark-basin"
+  ],
+  "ambiguity_note": {
+    "phrase": "from the point of origin to the first destination point",
+    "readings": [
+      "the airtime is counted from the traveller's origin, Austin, to the first place the itinerary lands: a short hop, so coach",
+      "each international segment counts from its own point of origin to its first destination: the transatlantic segment exceeds six hours, so business"
+    ]
+  },
+  "request": "Austin to Frankfurt on March 2nd for the equipment certification at the vendor's lab. The long leg is ten hours, so business class please.",
+  "trip": {
+    "traveller_name": "Stefan Albrecht",
+    "traveller_title": "Director, Equipment Certification",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "AUS",
+    "destination": "FRA",
+    "travel_date": "2027-03-02",
+    "booking_date": "2027-02-01",
+    "purpose": "Equipment certification at the vendor's lab",
+    "purpose_kind": "CUSTOMER_SITE_WORK",
+    "requested_cabin": "BUSINESS",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 620000,
+    "sign_offs": [
+      {
+        "role": "EXECUTIVE_VP",
+        "name": "Leonard Haynes",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "AUS",
+        "destination": "FRA",
+        "date": "2027-03-02",
+        "return_date": "",
+        "background": 0,
+        "flights": {
+          "dallas": {
+            "carrier": "AA",
+            "via": [
+              "DFW"
+            ],
+            "depart": "14:10",
+            "minutes": [
+              55,
+              590
+            ],
+            "layovers": [
+              95
+            ]
+          },
+          "chicago": {
+            "carrier": "UA",
+            "via": [
+              "ORD"
+            ],
+            "depart": "13:05",
+            "minutes": [
+              160,
+              505
+            ],
+            "layovers": [
+              80
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "dallas-economy",
+            "flight": "dallas",
+            "cabin": "ECONOMY",
+            "fare_cents": 112000
+          },
+          {
+            "slot": "dallas-business",
+            "flight": "dallas",
+            "cabin": "BUSINESS",
+            "fare_cents": 498000
+          },
+          {
+            "slot": "chicago-economy",
+            "flight": "chicago",
+            "cabin": "ECONOMY",
+            "fare_cents": 108500
+          },
+          {
+            "slot": "chicago-business",
+            "flight": "chicago",
+            "cabin": "BUSINESS",
+            "fare_cents": 476000
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "FLAG_FOR_APPROVAL",
+    "offer_slots": [
+      "chicago-business",
+      "chicago-economy"
+    ],
+    "cabins": [
+      "BUSINESS",
+      "ECONOMY"
+    ],
+    "reason_codes": [
+      "UNCLEAR_POLICY_TEXT"
+    ],
+    "approvers": [
+      "NOT_NAMED",
+      "TRAVEL_DEPARTMENT",
+      "EXECUTIVE_VP"
+    ],
+    "clauses": [
+      "AIR_REQUIREMENTS",
+      "AIR_TRAVEL"
+    ],
+    "unclear_phrase": "from the point of origin to the first destination point"
+  },
+  "must_keep": [
+    {
+      "lines": [
+        647,
+        647
+      ],
+      "sha256": "4d2baefcf9e2c12d3135f8328e0a4f9864834358e3448066f3d3b6b83d31d739",
+      "quote": "Travelers are permitted business class only on international flight segments when the non-stop/direct airtime exceeds six (6) hours from the point of origin to the first destination point.",
+      "why": "business only on an international segment over six hours"
+    },
+    {
+      "lines": [
+        643,
+        643
+      ],
+      "sha256": "74d050b02fe8047479db6bcbff2ed35f56216eb2a1cc8986bfff0d56ca6db262",
+      "quote": "Coach class or lower special fares are required for all domestic travel and international flight segments of six (6) hours or less.",
+      "why": "coach for domestic travel and segments of six hours or less"
+    },
+    {
+      "lines": [
+        101,
+        101
+      ],
+      "sha256": "659ecc32b4746ffc85f80db182927cd6a35fe64553bb17a3bb0db52866229e38",
+      "quote": "The Corporate Travel Department is responsible for establishment, maintenance, revision, and publication of this policy",
+      "why": "nobody else is named to settle the policy's words"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Only connections: a short domestic hop (55 or 160 minutes) to Dallas or Chicago, then a transatlantic segment of 590 or 505 minutes. Line 647 allows business 'when the non-stop/direct airtime exceeds six (6) hours from the point of origin to the first destination point': from Austin to the first destination point is a short hop (coach), but the transatlantic segment's own nonstop airtime exceeds six hours (business), and one offer sells one cabin on both flights. Hold the cheapest business or economy fare; nobody is named to settle the words (line 101: the Corporate Travel Department owns the policy)."
+}

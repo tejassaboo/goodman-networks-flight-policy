@@ -1,0 +1,101 @@
+{
+  "id": "umber-wren",
+  "category": "refusal",
+  "overlays": [
+    "multi_traveller",
+    "outside_air_section"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "Hi, I'm Tessa Morgan. My husband Ryan is presenting at the wireless infrastructure conference in Las Vegas on March 9th and I'm going with him. Could you book my flight from Dallas too? Economy is fine.",
+  "trip": {
+    "traveller_name": "Tessa Morgan",
+    "traveller_title": "Spouse of Ryan Morgan, Director of Engineering",
+    "passenger": "SPOUSE_OR_GUEST",
+    "accompanies": "Ryan Morgan",
+    "origin": "DFW",
+    "destination": "LAS",
+    "travel_date": "2027-03-09",
+    "booking_date": "2027-02-08",
+    "purpose": "Accompanying her husband to a wireless infrastructure conference",
+    "purpose_kind": "CONFERENCE",
+    "requested_cabin": "ECONOMY",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 0,
+    "sign_offs": [],
+    "travelling_with": [],
+    "group_size": 2,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "LAS",
+        "date": "2027-03-09",
+        "return_date": "",
+        "background": 3,
+        "flights": {
+          "southwest": {
+            "carrier": "WN",
+            "depart": "08:35"
+          },
+          "american": {
+            "carrier": "AA",
+            "depart": "11:50"
+          }
+        },
+        "offers": [
+          {
+            "slot": "southwest-economy",
+            "flight": "southwest",
+            "cabin": "ECONOMY",
+            "fare_cents": 18600
+          },
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 21200
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "REFUSE",
+    "offer_slots": [],
+    "cabins": [
+      "NONE"
+    ],
+    "reason_codes": [
+      "COMPANION_NOT_COVERED",
+      "OUTSIDE_POLICY_SCOPE"
+    ],
+    "approvers": [
+      "NONE"
+    ],
+    "clauses": [
+      "NON_EMPLOYEE_TRAVEL"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        1203,
+        1203
+      ],
+      "sha256": "72ea3dfcdca2f2e7db670617bb0a47f46f6f774649290d041fef865575bc2fb5",
+      "quote": "Any non-employee accompanying a Goodman Networks employee on an approved business trip shall do so at their own risk and expense.",
+      "why": "a non-employee travels at their own risk and expense"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Any non-employee accompanying an employee on an approved business trip does so at their own risk and expense (line 1203, under Additional Travel Policy Items): the company buys no ticket for her."
+}

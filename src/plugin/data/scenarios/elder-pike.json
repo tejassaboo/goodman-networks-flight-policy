@@ -1,0 +1,159 @@
+{
+  "id": "elder-pike",
+  "category": "easy",
+  "overlays": [],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "Miami to Seattle on January 20th for the DAS install kickoff. It's almost seven hours coast to coast, so can you put me in business?",
+  "trip": {
+    "traveller_name": "Renata Cole",
+    "traveller_title": "Construction Manager",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "MIA",
+    "destination": "SEA",
+    "travel_date": "2027-01-20",
+    "booking_date": "2026-12-21",
+    "purpose": "Distributed antenna system install kickoff",
+    "purpose_kind": "CUSTOMER_SITE_WORK",
+    "requested_cabin": "BUSINESS",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 88000,
+    "sign_offs": [
+      {
+        "role": "VICE_PRESIDENT",
+        "name": "Angela Ruiz",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "MIA",
+        "destination": "SEA",
+        "date": "2027-01-20",
+        "return_date": "",
+        "background": 0,
+        "flights": {
+          "american": {
+            "carrier": "AA",
+            "depart": "08:10",
+            "minutes": [
+              400
+            ]
+          },
+          "alaska": {
+            "carrier": "AS",
+            "depart": "10:35",
+            "minutes": [
+              405
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 38900
+          },
+          {
+            "slot": "american-business",
+            "flight": "american",
+            "cabin": "BUSINESS",
+            "fare_cents": 112000
+          },
+          {
+            "slot": "alaska-economy",
+            "flight": "alaska",
+            "cabin": "ECONOMY",
+            "fare_cents": 36400
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "BOOK",
+    "offer_slots": [
+      "alaska-economy"
+    ],
+    "cabins": [
+      "ECONOMY"
+    ],
+    "reason_codes": [
+      "DOMESTIC_COACH_REQUIRED",
+      "LONG_FLIGHT_CONDITION_NOT_MET",
+      "LOWEST_FARE",
+      "UPGRADE_NOT_ELIGIBLE"
+    ],
+    "approvers": [
+      "NONE",
+      "VICE_PRESIDENT"
+    ],
+    "clauses": [
+      "AIR_REQUIREMENTS",
+      "AIR_TRAVEL",
+      "LOWEST_LOGICAL_AIRFARE"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        643,
+        643
+      ],
+      "sha256": "74d050b02fe8047479db6bcbff2ed35f56216eb2a1cc8986bfff0d56ca6db262",
+      "quote": "Coach class or lower special fares are required for all domestic travel and international flight segments of six (6) hours or less.",
+      "why": "coach for domestic travel and segments of six hours or less"
+    },
+    {
+      "lines": [
+        647,
+        647
+      ],
+      "sha256": "4d2baefcf9e2c12d3135f8328e0a4f9864834358e3448066f3d3b6b83d31d739",
+      "quote": "Travelers are permitted business class only on international flight segments when the non-stop/direct airtime exceeds six (6) hours from the point of origin to the first destination point.",
+      "why": "business only on an international segment over six hours"
+    },
+    {
+      "lines": [
+        635,
+        635
+      ],
+      "sha256": "67a4b7d3d5973458c94dfc26b8b91aa64f2282ea27d404d664a94ffb09a962a0",
+      "quote": "Within travel policy, the lowest logical airfare is always required.",
+      "why": "the default: the lowest logical airfare"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Coach class is required for all domestic travel (line 643), whatever the flight time; business is only for international segments (line 647). The lowest logical airfare."
+}

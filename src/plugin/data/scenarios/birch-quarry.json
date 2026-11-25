@@ -1,0 +1,154 @@
+{
+  "id": "birch-quarry",
+  "category": "easy",
+  "overlays": [
+    "dearer_option"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "I fly Dallas to London Heathrow on February 2nd for the operator's network rollout kickoff. It's a nine-hour overnight flight, so business class please.",
+  "trip": {
+    "traveller_name": "Priya Raman",
+    "traveller_title": "Program Director, EMEA Deployments",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "LHR",
+    "travel_date": "2027-02-02",
+    "booking_date": "2027-01-04",
+    "purpose": "Network rollout kickoff with a UK mobile operator",
+    "purpose_kind": "CUSTOMER_MEETING",
+    "requested_cabin": "BUSINESS",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 620000,
+    "sign_offs": [
+      {
+        "role": "EXECUTIVE_VP",
+        "name": "Leonard Haynes",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "LHR",
+        "date": "2027-02-02",
+        "return_date": "",
+        "background": 0,
+        "flights": {
+          "american": {
+            "carrier": "AA",
+            "depart": "17:05",
+            "minutes": [
+              560
+            ]
+          },
+          "british": {
+            "carrier": "BA",
+            "depart": "19:40",
+            "minutes": [
+              570
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 98000
+          },
+          {
+            "slot": "american-business",
+            "flight": "american",
+            "cabin": "BUSINESS",
+            "fare_cents": 520000
+          },
+          {
+            "slot": "british-economy",
+            "flight": "british",
+            "cabin": "ECONOMY",
+            "fare_cents": 101500
+          },
+          {
+            "slot": "british-business",
+            "flight": "british",
+            "cabin": "BUSINESS",
+            "fare_cents": 489000
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "BOOK",
+    "offer_slots": [
+      "british-business"
+    ],
+    "cabins": [
+      "BUSINESS"
+    ],
+    "reason_codes": [
+      "INTERNATIONAL_LONG_FLIGHT"
+    ],
+    "approvers": [
+      "NONE",
+      "EXECUTIVE_VP"
+    ],
+    "clauses": [
+      "AIR_REQUIREMENTS",
+      "AIR_TRAVEL"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        647,
+        647
+      ],
+      "sha256": "4d2baefcf9e2c12d3135f8328e0a4f9864834358e3448066f3d3b6b83d31d739",
+      "quote": "Travelers are permitted business class only on international flight segments when the non-stop/direct airtime exceeds six (6) hours from the point of origin to the first destination point.",
+      "why": "business only on an international segment over six hours"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [
+    {
+      "lines": [
+        405,
+        407
+      ],
+      "quote": "$1,200 + or first class tickets",
+      "why": "a CEO notification, not an approval"
+    }
+  ],
+  "design_notes": "Both nonstops are international with airtime over six hours (line 647): business is permitted; the cheapest business fare. The 6,200 dollars of travel expenses need EVP / President-COO approval (Table 2), on file; the CEO notification above 1,200 dollars is not an approval."
+}

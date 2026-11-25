@@ -1,0 +1,182 @@
+{
+  "id": "willow-shoal",
+  "category": "flag",
+  "overlays": [
+    "multi_leg",
+    "unclear_phrase"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [
+    "hazel-rook",
+    "iris-spindle"
+  ],
+  "ambiguity_note": {
+    "phrase": "i.e., the connecting flight would have added more than a 2-hour extension of travel time each way",
+    "readings": [
+      "the parenthesis only illustrates why a traveller might elect a nonstop: the 45-dollar difference is under $100, so book the nonstop",
+      "the parenthesis states when the election applies: the connection adds only 90 minutes, so the lowest logical airfare, the connection"
+    ]
+  },
+  "request": "Dallas to San Francisco on February 18th for the in-building wireless design review. Please put me on the American nonstop rather than the Denver connection.",
+  "trip": {
+    "traveller_name": "Grace Holloway",
+    "traveller_title": "In-Building Systems Manager",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "SFO",
+    "travel_date": "2027-02-18",
+    "booking_date": "2027-01-19",
+    "purpose": "In-building wireless design review",
+    "purpose_kind": "CUSTOMER_MEETING",
+    "requested_cabin": "ECONOMY",
+    "requested_departure": "",
+    "wants_nonstop": true,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 82000,
+    "sign_offs": [
+      {
+        "role": "VICE_PRESIDENT",
+        "name": "Angela Ruiz",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "SFO",
+        "date": "2027-02-18",
+        "return_date": "",
+        "background": 0,
+        "flights": {
+          "denver": {
+            "carrier": "UA",
+            "via": [
+              "DEN"
+            ],
+            "depart": "07:00",
+            "minutes": [
+              125,
+              150
+            ],
+            "layovers": [
+              60
+            ]
+          },
+          "american": {
+            "carrier": "AA",
+            "depart": "08:00",
+            "minutes": [
+              245
+            ]
+          },
+          "united": {
+            "carrier": "UA",
+            "depart": "11:30",
+            "minutes": [
+              250
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "denver-economy",
+            "flight": "denver",
+            "cabin": "ECONOMY",
+            "fare_cents": 28700
+          },
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 33200
+          },
+          {
+            "slot": "united-economy",
+            "flight": "united",
+            "cabin": "ECONOMY",
+            "fare_cents": 36900
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "FLAG_FOR_APPROVAL",
+    "offer_slots": [
+      "american-economy",
+      "denver-economy"
+    ],
+    "cabins": [
+      "ECONOMY"
+    ],
+    "reason_codes": [
+      "UNCLEAR_POLICY_TEXT"
+    ],
+    "approvers": [
+      "NOT_NAMED",
+      "TRAVEL_DEPARTMENT",
+      "VICE_PRESIDENT"
+    ],
+    "clauses": [
+      "LOWEST_LOGICAL_AIRFARE"
+    ],
+    "unclear_phrase": "i.e., the connecting flight would have added more than a 2-hour extension of travel time each way"
+  },
+  "must_keep": [
+    {
+      "lines": [
+        707,
+        707
+      ],
+      "sha256": "b431e82efc7a03fa27e08a92f4e88158e1c3f3b47f91635e578cf2ccf22cb1f8",
+      "quote": "Travelers may elect to fly a non-stop flight (over a lower-priced, connecting flight) provided that the additional cost is less than $100 per direction of travel. (i.e., the connecting flight would have added more than a 2-hour extension of travel time each way which would impact customer requirements).",
+      "why": "a nonstop over a cheaper connection within $100 per direction"
+    },
+    {
+      "lines": [
+        697,
+        705
+      ],
+      "sha256": "2054a5fbf57887c94b906c55efd2d02bcafd4ba724a9d6d635b3dbd2f172d500",
+      "quote": "Travelers are required to book the lowest logical airfare that is determined using the following search criteria: • Routing requires no more than one additional interim stop each way. • Time Window: Departure/arrival must be no more than 2 hours before and 2 hours after the requested time. One stop and single connection flights are treated the same as non-stops for itinerary purposes, fare calculations, and lowest fare identification.",
+      "why": "the lowest logical airfare: at most one interim stop, within two hours of the requested time"
+    },
+    {
+      "lines": [
+        101,
+        101
+      ],
+      "sha256": "659ecc32b4746ffc85f80db182927cd6a35fe64553bb17a3bb0db52866229e38",
+      "quote": "The Corporate Travel Department is responsible for establishment, maintenance, revision, and publication of this policy",
+      "why": "nobody else is named to settle the policy's words"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "The nonstop costs 45 dollars more than the Denver connection, less than $100 (line 707), but the connection takes 335 minutes against 245, only 90 minutes longer. Line 707's parenthesis, '(i.e., the connecting flight would have added more than a 2-hour extension of travel time each way ...)', is either an example or a condition of the election. Hold either offer; nobody is named to settle the words (line 101)."
+}

@@ -1,0 +1,131 @@
+{
+  "id": "yarrow-fern",
+  "category": "flag",
+  "overlays": [
+    "approval_required",
+    "outside_air_section"
+  ],
+  "twin_of": "quince-ridge",
+  "twin_fact": "travel expenses of 751 or 750 dollars",
+  "flag_twins": [
+    "quince-ridge",
+    "cinder-moss"
+  ],
+  "ambiguity_note": "none: an approval is required and missing; the text is clear",
+  "request": "Dallas to Minneapolis on February 11th for the splicing certification course. Paul, my director, signed off on the trip. Economy, cheapest flight.",
+  "trip": {
+    "traveller_name": "Nadia Brooks",
+    "traveller_title": "Fiber Technician",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "MSP",
+    "travel_date": "2027-02-11",
+    "booking_date": "2027-01-12",
+    "purpose": "Two-day fiber splicing certification course",
+    "purpose_kind": "TRAINING",
+    "requested_cabin": "ECONOMY",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 75100,
+    "sign_offs": [
+      {
+        "role": "DIRECTOR",
+        "name": "Paul Whitaker",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "MSP",
+        "date": "2027-02-11",
+        "return_date": "",
+        "background": 0,
+        "flights": {
+          "morning": {
+            "carrier": "DL",
+            "depart": "07:50"
+          },
+          "american": {
+            "carrier": "AA",
+            "depart": "10:15"
+          },
+          "evening": {
+            "carrier": "DL",
+            "depart": "16:20"
+          }
+        },
+        "offers": [
+          {
+            "slot": "morning-economy",
+            "flight": "morning",
+            "cabin": "ECONOMY",
+            "fare_cents": 26300
+          },
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 24100
+          },
+          {
+            "slot": "evening-economy",
+            "flight": "evening",
+            "cabin": "ECONOMY",
+            "fare_cents": 27800
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "FLAG_FOR_APPROVAL",
+    "offer_slots": [
+      "american-economy"
+    ],
+    "cabins": [
+      "ECONOMY"
+    ],
+    "reason_codes": [
+      "APPROVAL_REQUIRED"
+    ],
+    "approvers": [
+      "DIVISION_GENERAL_MANAGER",
+      "VICE_PRESIDENT"
+    ],
+    "clauses": [
+      "TRAVEL_AUTHORIZATIONS"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Authorization is required before booking (line 355). The trip is estimated at 751 dollars: Table 2 puts $751 - $1,100 at Vice President and/or Division General Manager approval, and only the Director signed. Hold the lowest logical fare for that approval: approval required, not 'no compliant offer'."
+}

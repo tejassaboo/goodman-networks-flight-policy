@@ -1,0 +1,184 @@
+{
+  "id": "sedge-harbor",
+  "category": "distractor",
+  "overlays": [
+    "upgrade_not_taken"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "Dallas to Paris on February 25th for the equipment vendor review. Economy is fine; I'll upgrade myself with my AAdvantage miles. Please book American though, I need the flights for my status.",
+  "trip": {
+    "traveller_name": "Elena Varga",
+    "traveller_title": "Supply Chain Manager",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "CDG",
+    "travel_date": "2027-02-25",
+    "booking_date": "2027-01-27",
+    "purpose": "Equipment vendor quality review in Paris",
+    "purpose_kind": "INTERNAL_MEETING",
+    "requested_cabin": "ECONOMY",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "American Airlines",
+    "trip_estimate_cents": 270000,
+    "sign_offs": [
+      {
+        "role": "EXECUTIVE_VP",
+        "name": "Leonard Haynes",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "CDG",
+        "date": "2027-02-25",
+        "return_date": "",
+        "background": 3,
+        "flights": {
+          "american": {
+            "carrier": "AA",
+            "depart": "16:45",
+            "minutes": [
+              550
+            ]
+          },
+          "airfrance": {
+            "carrier": "AF",
+            "depart": "18:20",
+            "minutes": [
+              555
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 92400
+          },
+          {
+            "slot": "american-business",
+            "flight": "american",
+            "cabin": "BUSINESS",
+            "fare_cents": 455000
+          },
+          {
+            "slot": "airfrance-economy",
+            "flight": "airfrance",
+            "cabin": "ECONOMY",
+            "fare_cents": 86900
+          },
+          {
+            "slot": "airfrance-business",
+            "flight": "airfrance",
+            "cabin": "BUSINESS",
+            "fare_cents": 431000
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "BOOK",
+    "offer_slots": [
+      "airfrance-economy"
+    ],
+    "cabins": [
+      "ECONOMY"
+    ],
+    "reason_codes": [
+      "LOWEST_FARE",
+      "LOYALTY_PROGRAM_PREFERENCE"
+    ],
+    "approvers": [
+      "NONE",
+      "EXECUTIVE_VP"
+    ],
+    "clauses": [
+      "AIR_REQUIREMENTS",
+      "AIR_TRAVEL",
+      "LOWEST_LOGICAL_AIRFARE",
+      "AIR_UPGRADES",
+      "FREQUENT_FLYER"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        717,
+        717
+      ],
+      "sha256": "3aaa16ee226e7c64c31e85e5ad607e283aec301e415f28ef5149eff420a68222",
+      "quote": "Participation in a Frequent Flyer Program must not influence flight selection that would result in incremental cost to the Company beyond the lowest available airfare, as required by this policy.",
+      "why": "a frequent flyer programme may not add cost beyond the lowest airfare"
+    },
+    {
+      "lines": [
+        733,
+        733
+      ],
+      "sha256": "85389b1ceb09a996fc403b4463be6b64f8c8c4242f2eb60f218f01b3bed7f485",
+      "quote": "Preferred provider use - Employees are not permitted to book air travel at a higher fare and override any Goodman Networks contracts with preferred providers in order to use Frequent Flyer program privileges.",
+      "why": "no higher fare to use frequent flyer privileges"
+    },
+    {
+      "lines": [
+        635,
+        635
+      ],
+      "sha256": "67a4b7d3d5973458c94dfc26b8b91aa64f2282ea27d404d664a94ffb09a962a0",
+      "quote": "Within travel policy, the lowest logical airfare is always required.",
+      "why": "the default: the lowest logical airfare"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [
+    {
+      "lines": [
+        689,
+        689
+      ],
+      "quote": "If upgrades are available at no cost to Goodman Networks (i.e. frequent flyer incentives offered by the airlines, etc.), they are allowed.",
+      "why": "a free upgrade with miles is allowed but does not choose the ticket"
+    },
+    {
+      "lines": [
+        1157,
+        1157
+      ],
+      "quote": "however a cap is also applicable at $35.",
+      "why": "a meal cap, not a fare rule"
+    }
+  ],
+  "design_notes": "Frequent flyer participation must not influence flight selection that adds cost beyond the lowest airfare (lines 717, 733): Air France, 55 dollars cheaper, not American. An upgrade with miles costs the company nothing and is allowed (line 689), but it does not choose the ticket; business is permitted on this route but not asked."
+}

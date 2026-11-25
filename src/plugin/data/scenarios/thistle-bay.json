@@ -1,0 +1,112 @@
+{
+  "id": "thistle-bay",
+  "category": "refusal",
+  "overlays": [
+    "personal_travel",
+    "outside_air_section"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "Can you book me Dallas to Orlando on December 21st? It's our family holiday trip to the parks. Just put it through the company travel account and I'll sort it out with expenses.",
+  "trip": {
+    "traveller_name": "Brianna Scott",
+    "traveller_title": "Project Coordinator",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "MCO",
+    "travel_date": "2026-12-21",
+    "booking_date": "2026-11-30",
+    "purpose": "Family holiday",
+    "purpose_kind": "PERSONAL",
+    "requested_cabin": "ECONOMY",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 0,
+    "sign_offs": [],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "MCO",
+        "date": "2026-12-21",
+        "return_date": "",
+        "background": 3,
+        "flights": {
+          "american": {
+            "carrier": "AA",
+            "depart": "09:05"
+          },
+          "southwest": {
+            "carrier": "WN",
+            "depart": "13:40"
+          }
+        },
+        "offers": [
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 27400
+          },
+          {
+            "slot": "southwest-economy",
+            "flight": "southwest",
+            "cabin": "ECONOMY",
+            "fare_cents": 24900
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "REFUSE",
+    "offer_slots": [],
+    "cabins": [
+      "NONE"
+    ],
+    "reason_codes": [
+      "OUTSIDE_POLICY_SCOPE",
+      "PERSONAL_TRAVEL_NOT_COVERED"
+    ],
+    "approvers": [
+      "NONE"
+    ],
+    "clauses": [
+      "INTRODUCTION",
+      "POLICY_ENFORCEMENT",
+      "TRAVEL_AUTHORIZATIONS"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        11,
+        11
+      ],
+      "sha256": "c8d8a7dd03ce72543f91d73eb945703950621bf38766a41f6c23002c84817892",
+      "quote": "Goodman Networks employee business travel is authorized only in circumstances that are clearly consistent with the Company's business interest.",
+      "why": "travel is for the business only"
+    },
+    {
+      "lines": [
+        325,
+        325
+      ],
+      "sha256": "a2ad5cee71c73820a13e476a7ee57f61dd8750d6e4d1cbcc3963b8cdad068226",
+      "quote": "The Company reimburses employees for all reasonable and necessary expenses while traveling on authorized company business",
+      "why": "the company pays for authorized business travel"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Business travel is authorized only when clearly consistent with the company's business interest (line 11; line 359), and the company reimburses expenses of authorized company business (line 325). A family holiday is not: no ticket is bought."
+}

@@ -1,0 +1,13 @@
+_ > nanoagent.plugin.v0001.ProductConfig:
+tagline: "One flight request, the firm's real travel handbook: book it, refuse it, or hold it for sign-off"
+summary: "An agent handles one traveller's flight request under Goodman Networks' Corporate Travel Policy (Schedule Q of a 2013 SEC-filed services agreement), read verbatim. It reads the trip record, searches a simulated flight world (real airports and airlines, synthetic schedules and fares) and submits a decision with the offer, cabin, reason, approver and handbook section. A deterministic verifier rebuilds the offers and the handbook's answer itself and checks every field. Twenty-four cases cover the approval table to the dollar, 360 against 361 scheduled minutes, the nonstop allowance to the dollar, the requested-time window to the minute, Hawaii as domestic travel, executive upgrades, non-employees and holidays, and the handbook's own unclear words."
+highlights:
+  - "The verbatim handbook: no paraphrase, no rules restated in the task"
+  - "Exact boundaries: 750 against 751 dollars, 360 against 361 minutes, 99 against 100 dollars, 120 against 125 minutes"
+  - "Unclear clauses become holds for approval, each once, with clear twins on both sides"
+  - "Fully offline: a hash-seeded flight world with unguessable offer ids"
+steps:
+  - "Name a case, for example aspen-tarn, with the traveller's request"
+  - "The agent reads the trip record and searches flights on the trip's route and date"
+  - "It submits BOOK, REFUSE or FLAG_FOR_APPROVAL with the offer, cabin, reason, approver and section"
+  - "The verifier recomputes the handbook's answer and checks every field"

@@ -1,0 +1,154 @@
+{
+  "id": "fable-wharf",
+  "category": "boundary_twin",
+  "overlays": [
+    "dearer_option"
+  ],
+  "twin_of": "gorse-lantern",
+  "twin_fact": "both nonstops scheduled at 361 minutes or 360 minutes",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "Boston to Dublin overnight on February 16th for the RAN audit. It's about a six-hour flight and I have to present the morning I land. Business please.",
+  "trip": {
+    "traveller_name": "Siobhan Keane",
+    "traveller_title": "Principal RF Consultant",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "BOS",
+    "destination": "DUB",
+    "travel_date": "2027-02-16",
+    "booking_date": "2027-01-15",
+    "purpose": "Radio access network audit for an Irish operator",
+    "purpose_kind": "CUSTOMER_MEETING",
+    "requested_cabin": "BUSINESS",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 390000,
+    "sign_offs": [
+      {
+        "role": "EXECUTIVE_VP",
+        "name": "Leonard Haynes",
+        "subject": "TRIP"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": []
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "BOS",
+        "destination": "DUB",
+        "date": "2027-02-16",
+        "return_date": "",
+        "background": 0,
+        "flights": {
+          "aerlingus": {
+            "carrier": "EI",
+            "depart": "18:40",
+            "minutes": [
+              361
+            ]
+          },
+          "delta": {
+            "carrier": "DL",
+            "depart": "20:15",
+            "minutes": [
+              361
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "aerlingus-economy",
+            "flight": "aerlingus",
+            "cabin": "ECONOMY",
+            "fare_cents": 68500
+          },
+          {
+            "slot": "aerlingus-business",
+            "flight": "aerlingus",
+            "cabin": "BUSINESS",
+            "fare_cents": 312000
+          },
+          {
+            "slot": "delta-economy",
+            "flight": "delta",
+            "cabin": "ECONOMY",
+            "fare_cents": 71200
+          },
+          {
+            "slot": "delta-business",
+            "flight": "delta",
+            "cabin": "BUSINESS",
+            "fare_cents": 298000
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "BOOK",
+    "offer_slots": [
+      "delta-business"
+    ],
+    "cabins": [
+      "BUSINESS"
+    ],
+    "reason_codes": [
+      "INTERNATIONAL_LONG_FLIGHT"
+    ],
+    "approvers": [
+      "NONE",
+      "EXECUTIVE_VP"
+    ],
+    "clauses": [
+      "AIR_REQUIREMENTS",
+      "AIR_TRAVEL"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        647,
+        647
+      ],
+      "sha256": "4d2baefcf9e2c12d3135f8328e0a4f9864834358e3448066f3d3b6b83d31d739",
+      "quote": "Travelers are permitted business class only on international flight segments when the non-stop/direct airtime exceeds six (6) hours from the point of origin to the first destination point.",
+      "why": "business only on an international segment over six hours"
+    },
+    {
+      "lines": [
+        643,
+        643
+      ],
+      "sha256": "74d050b02fe8047479db6bcbff2ed35f56216eb2a1cc8986bfff0d56ca6db262",
+      "quote": "Coach class or lower special fares are required for all domestic travel and international flight segments of six (6) hours or less.",
+      "why": "coach for domestic travel and segments of six hours or less"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "Both nonstops are scheduled at 361 minutes: international airtime that exceeds six hours (line 647), so business is permitted; the cheapest business fare. Background is off: a filler connection could fall on the other side."
+}

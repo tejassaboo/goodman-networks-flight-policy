@@ -1,0 +1,165 @@
+{
+  "id": "oriole-fen",
+  "category": "multi_rule",
+  "overlays": [
+    "dearer_option"
+  ],
+  "twin_of": "",
+  "twin_fact": "",
+  "flag_twins": [],
+  "ambiguity_note": "none",
+  "request": "Dallas to Tokyo Narita on March 8th for the vendor summit. Leonard, my EVP, approved first class for this one and the CEO's office has been told. First class please.",
+  "trip": {
+    "traveller_name": "Gregory Lam",
+    "traveller_title": "Vice President, Network Engineering",
+    "passenger": "EMPLOYEE",
+    "accompanies": "",
+    "origin": "DFW",
+    "destination": "NRT",
+    "travel_date": "2027-03-08",
+    "booking_date": "2027-02-05",
+    "purpose": "Equipment vendor summit in Tokyo",
+    "purpose_kind": "CONFERENCE",
+    "requested_cabin": "FIRST",
+    "requested_departure": "",
+    "wants_nonstop": false,
+    "loyalty_airline": "",
+    "trip_estimate_cents": 1240000,
+    "sign_offs": [
+      {
+        "role": "EXECUTIVE_VP",
+        "name": "Leonard Haynes",
+        "subject": "TRIP"
+      },
+      {
+        "role": "EXECUTIVE_VP",
+        "name": "Leonard Haynes",
+        "subject": "FIRST_CLASS"
+      }
+    ],
+    "travelling_with": [],
+    "group_size": 1,
+    "notes": [
+      "The Chief Executive Officer's office was notified of the first-class ticket on 2027-02-03."
+    ]
+  },
+  "world": {
+    "searches": [
+      {
+        "name": "main",
+        "origin": "DFW",
+        "destination": "NRT",
+        "date": "2027-03-08",
+        "return_date": "",
+        "background": 0,
+        "flights": {
+          "american": {
+            "carrier": "AA",
+            "depart": "11:00",
+            "minutes": [
+              790
+            ]
+          },
+          "japan": {
+            "carrier": "JL",
+            "depart": "12:15",
+            "minutes": [
+              800
+            ]
+          }
+        },
+        "offers": [
+          {
+            "slot": "american-economy",
+            "flight": "american",
+            "cabin": "ECONOMY",
+            "fare_cents": 132000
+          },
+          {
+            "slot": "american-business",
+            "flight": "american",
+            "cabin": "BUSINESS",
+            "fare_cents": 610000
+          },
+          {
+            "slot": "american-first",
+            "flight": "american",
+            "cabin": "FIRST",
+            "fare_cents": 1120000
+          },
+          {
+            "slot": "japan-economy",
+            "flight": "japan",
+            "cabin": "ECONOMY",
+            "fare_cents": 128500
+          },
+          {
+            "slot": "japan-business",
+            "flight": "japan",
+            "cabin": "BUSINESS",
+            "fare_cents": 585000
+          },
+          {
+            "slot": "japan-first",
+            "flight": "japan",
+            "cabin": "FIRST",
+            "fare_cents": 1060000
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "decision": "BOOK",
+    "offer_slots": [
+      "japan-first"
+    ],
+    "cabins": [
+      "FIRST"
+    ],
+    "reason_codes": [
+      "FIRST_CLASS_APPROVED"
+    ],
+    "approvers": [
+      "NONE",
+      "EXECUTIVE_VP"
+    ],
+    "clauses": [
+      "AIR_REQUIREMENTS",
+      "AIR_TRAVEL",
+      "TRAVEL_AUTHORIZATIONS"
+    ],
+    "unclear_phrase": ""
+  },
+  "must_keep": [
+    {
+      "lines": [
+        651,
+        651
+      ],
+      "sha256": "a82654cabf9a29d527c4f314ffdad6e5c5274e09c62a31008187b0f5a323b24f",
+      "quote": "First Class is not authorized to or from any destination unless approved by the EVP, with notification to the CEO.",
+      "why": "first class needs the EVP's approval"
+    },
+    {
+      "lines": [
+        355,
+        355
+      ],
+      "sha256": "755c9e58f807b6ebf080abb41f27e8ed96302ff951e33444d42a70da9a3c14d0",
+      "quote": "Employees must obtain authorization for all travel prior to booking any travel arrangements.",
+      "why": "every trip needs its sign-off before booking"
+    },
+    {
+      "lines": [
+        383,
+        407
+      ],
+      "sha256": "8ac229e4ac23855dec7410944afbb8008f8b1e128b1ac9ab50d3aaf630fa0ac0",
+      "quote": "TABLE 2: TRAVEL APPROVAL HIERARCHY Dollar Range Approver $1 - $500 Manager Approval $501-$750 Director Approval $751 - $1,100 Vice President and/or Division General Manager Approval $1,101 + Executive Vice President / President-COO Approval $1,200 + or first class tickets Chief Executive Officer Notification",
+      "why": "Table 2: the approval each dollar range of travel expenses needs"
+    }
+  ],
+  "distractors": [],
+  "design_notes": "First class is not authorized unless approved by the EVP, with notification to the CEO (line 651; Table 2 lists first-class tickets for CEO notification): both are on file, so the cheapest first-class fare."
+}
